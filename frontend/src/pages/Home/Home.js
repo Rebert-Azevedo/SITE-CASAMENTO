@@ -13,9 +13,9 @@ function HomePage() {
         const response = {
           data: {
             nome_noivo: 'Rebert',
-            nome_noiva: 'Sua Noiva',
+            nome_noiva: 'Juliane',
             data_casamento: '2026-05-10',
-            mensagem_boas_vindas_site: 'Sejam bem-vindos ao nosso site de casamento! Estamos muito felizes em compartilhar esse momento com vocês.',
+            mensagem_boas_vindas_site: 'Sejam bem-vindos ao site do nosso Noivado! Estamos muito felizes em compartilhar esse momento com vocês.',
             foto_casal_url: 'https://via.placeholder.com/1200x600?text=Foto+do+Casal+Aqui',
             local_cerimonia: 'Catedral Basílica Primacial de São Salvador',
             local_recepcao: 'Espaço de Eventos Maravilhoso'

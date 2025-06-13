@@ -1,8 +1,9 @@
 .header {
-    background-color: #f8f8f8;
-    padding: 15px 30px;
-    border-bottom: 1px solid #eee;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    background-color: var(--color-white);
+    padding: 20px 40px; /* Mais padding */
+    border-bottom: 1px solid var(--color-border-subtle);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Sombra mais proeminente */
+    text-align: center;
 }
 
 .nav {
@@ -16,34 +17,51 @@
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 25px;
+    gap: 40px; /* Mais espaçamento */
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .navLink {
     text-decoration: none;
-    color: #555;
-    font-weight: 600;
-    padding: 8px 12px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    color: var(--color-text-medium);
+    font-weight: 500; /* Levemente menos negrito */
+    font-family: 'Open Sans', sans-serif; /* Fonte para navegação */
+    padding: 12px 18px; /* Aumenta o padding */
+    border-radius: 8px; /* Mais arredondado */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.08em; /* Mais espaçamento entre letras */
 }
 
 .navLink:hover {
-    background-color: #e0e0e0;
-    color: #333;
+    background-color: var(--color-secondary-green); /* Verde suave no hover */
+    color: var(--color-white);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* Sombra sutil no hover */
 }
 
 .logoutButton {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
+    background-color: var(--color-primary-gold); /* Botão em dourado principal */
+    color: var(--color-white);
+    padding: 12px 25px; /* Ajuste padding */
+    border-radius: 8px;
     cursor: pointer;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
+    font-weight: 700;
+    font-family: 'Open Sans', sans-serif;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
-.logoutButton:hover {
-    background-color: #c82333;
+/* Usar a classe `darken-primary-gold` do global.css para o hover */
+
+/* Responsividade básica para o Header */
+@media (max-width: 768px) {
+    .navList {
+        gap: 15px;
+    }
+    .navLink, .logoutButton {
+        font-size: 0.9em;
+        padding: 10px 12px;
+    }
 }

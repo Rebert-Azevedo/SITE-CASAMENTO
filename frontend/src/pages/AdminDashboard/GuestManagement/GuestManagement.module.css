@@ -1,15 +1,20 @@
 .guestManagementContainer {
-    padding: 20px;
+    padding: 30px; /* Mais padding */
     text-align: center;
+    background-color: var(--color-white);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border-top: 5px solid var(--color-primary-green);
 }
 
 .guestManagementContainer h2 {
-    font-size: 2em;
-    color: #333;
-    margin-bottom: 20px;
+    font-size: 2.8em;
+    color: var(--color-primary-green);
+    margin-bottom: 25px;
 }
 
 .guestManagementContainer p {
-    color: #666;
-    font-size: 1.1em;
+    color: var(--color-text-medium);
+    font-size: 1.15em;
+    line-height: 1.8;
 }

@@ -5,32 +5,33 @@
     justify-content: center;
     min-height: calc(100vh - 80px);
     text-align: center;
-    background-color: #f0f2f5;
+    background-color: var(--color-background-light);
 }
 
 .notFoundContainer h1 {
-    font-size: 6em;
-    color: #dc3545;
+    font-size: 10em; /* Erro GIGANTE */
+    color: var(--color-primary-gold); /* Dourado para o erro */
     margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.05em;
 }
 
 .notFoundContainer p {
-    font-size: 1.5em;
-    color: #666;
-    margin-bottom: 30px;
+    font-size: 2em;
+    color: var(--color-text-dark);
+    margin-bottom: 40px;
+    font-family: 'Lora', serif;
 }
 
 .homeLink {
-    background-color: #007bff;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 5px;
+    background-color: var(--color-primary-green); /* Botão em verde principal */
+    color: var(--color-white);
+    padding: 18px 35px; /* Botão maior */
+    border-radius: 8px;
     text-decoration: none;
-    font-size: 1.1em;
+    font-size: 1.3em;
     font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.homeLink:hover {
-    background-color: #0056b3;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }

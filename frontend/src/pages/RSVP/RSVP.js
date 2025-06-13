@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import api from '../../api/api';
 import styles from './RSVP.module.css';
+// REMOVIDO: import { InputMask } from '@react-input-mask/web';
 
 function RSVPPage() {
   const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
+  const [telefone, setTelefone] = useState('');
   const [participar, setParticipar] = useState(true);
-  // Alterado: de acompanhantes para criancas
   const [criancas, setCriancas] = useState(0);
   const [observacoes, setObservacoes] = useState('');
   const [message, setMessage] = useState('');
@@ -17,21 +17,24 @@ function RSVPPage() {
     setMessage('');
     setError('');
 
+    if (!nome || !telefone) {
+      setError('Nome completo e telefone são obrigatórios.');
+      return;
+    }
+
     try {
-        const response = await api.post('/rsvp', { // Você precisará criar a rota /api/rsvp no backend
+        const response = await api.post('/rsvp', {
             nome_completo: nome,
-            email: email,
+            telefone: telefone,
             vai_participar: participar,
-            // Alterado: de quantidade_acompanhantes para quantidade_criancas
             quantidade_criancas: participar ? criancas : 0,
             observacoes: observacoes,
         });
 
         setMessage(response.data.message || 'Sua presença foi confirmada com sucesso!');
         setNome('');
-        setEmail('');
+        setTelefone('');
         setParticipar(true);
-        // Alterado: de setAcompanhantes para setCriancas
         setCriancas(0);
         setObservacoes('');
     } catch (err) {
@@ -43,7 +46,7 @@ function RSVPPage() {
   return (
     <div className={styles.rsvpContainer}>
       <h2>Confirme Sua Presença</h2>
-      <p>Sua presença é muito importante para nós! Por favor, preencha o formulário abaixo.</p>
+      <p className={styles.subtitle}>Sua presença é muito importante para nós! Por favor, preencha o formulário abaixo.</p>
       <form onSubmit={handleSubmit} className={styles.rsvpForm}>
         <div className={styles.formGroup}>
           <label htmlFor="nome">Seu Nome Completo:</label>
@@ -56,18 +59,21 @@ function RSVPPage() {
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="email">Seu E-mail:</label>
+          <label htmlFor="telefone">Seu Telefone (WhatsApp):</label>
+          {/* ALTERADO: Usando input normal novamente */}
           <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="tel"
+            id="telefone"
+            value={telefone}
+            onChange={(e) => setTelefone(e.target.value)}
             required
+            placeholder="(DD) 9XXXX-XXXX"
+            className={styles.inputMaskField} /* Mantenha a classe para estilização */
           />
         </div>
         <div className={styles.formGroup}>
           <label>Você irá participar?</label>
-          <div>
+          <div className={styles.radioGroup}>
             <label>
               <input
                 type="radio"
@@ -89,7 +95,6 @@ function RSVPPage() {
 
         {participar && (
           <div className={styles.formGroup}>
-            {/* Alterado: label e input para criancas */}
             <label htmlFor="criancas">Quantas crianças?</label>
             <input
               type="number"
@@ -114,7 +119,7 @@ function RSVPPage() {
         {message && <p className={styles.successMessage}>{message}</p>}
         {error && <p className={styles.errorMessage}>{error}</p>}
 
-        <button type="submit" className={styles.submitButton}>Confirmar Presença</button>
+        <button type="submit" className={`${styles.submitButton} darken-primary-gold`}>Confirmar Presença</button>
       </form>
     </div>
   );

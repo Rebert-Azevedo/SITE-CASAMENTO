@@ -21,12 +21,13 @@ function GiftListPage() {
       const giftsResponse = await api.get('/gifts');
       setGifts(giftsResponse.data);
 
+      // Mocks de categorias ajustados para o tema Noivado
       const categoriesResponse = {
         data: [
-          { id: 1, nome: 'Cozinha' },
-          { id: 2, nome: 'Quarto' },
-          { id: 3, nome: 'Sala' },
-          { id: 4, nome: 'Eletrodomésticos' },
+          { id: 1, nome: 'Casa Nova' },
+          { id: 2, nome: 'Aparelhos' },
+          { id: 3, nome: 'Lazer' },
+          { id: 4, nome: 'Viagem' },
           { id: 5, nome: 'Decoração' },
         ]
       };
@@ -39,20 +40,12 @@ function GiftListPage() {
       setLoading(false);
     }
   };
-
-  const handleReserve = async (giftId, reservationData) => {
-    try {
-      await api.post(`/gifts/${giftId}/reserve`, reservationData);
-      alert('Presente reservado com sucesso! Muito obrigado!');
-      setGifts(prevGifts =>
-        prevGifts.map(gift =>
-          gift.id === giftId ? { ...gift, status: 'reservado' } : gift
-        )
-      );
-    } catch (err) {
-      alert('Erro ao reservar presente: ' + (err.response?.data?.message || 'Erro desconhecido'));
-      console.error('Reservation failed:', err);
-    }
+  const handleReserve = (giftId) => {
+    setGifts(prevGifts =>
+      prevGifts.map(gift =>
+        gift.id === giftId ? { ...gift, status: 'reservado' } : gift
+      )
+    );
   };
 
   const filteredGifts = selectedCategory === 'all'
@@ -64,8 +57,7 @@ function GiftListPage() {
 
   return (
     <div className={styles.giftListContainer}>
-      <h2>Nossa Lista de Presentes</h2>
-      <p>Escolha um presente para nos ajudar a montar o nosso novo lar!</p>
+      <h2>Lista de Presentes do Nosso Noivado</h2> <p className={styles.subtitle}>Escolha um presente para nos ajudar a montar o nosso novo lar!</p>
 
       <div className={styles.categoryFilter}>
         <label htmlFor="category">Filtrar por Categoria:</label>
@@ -83,7 +75,7 @@ function GiftListPage() {
 
       <div className={styles.giftsGrid}>
         {filteredGifts.length === 0 ? (
-          <p>Nenhum presente encontrado nesta categoria.</p>
+          <p className={styles.noGiftsMessage}>Nenhum presente encontrado nesta categoria.</p>
         ) : (
           filteredGifts.map(gift => (
             <GiftCard key={gift.id} gift={gift} onReserve={handleReserve} />

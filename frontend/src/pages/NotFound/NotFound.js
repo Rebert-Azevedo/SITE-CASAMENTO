@@ -7,7 +7,7 @@ function NotFoundPage() {
     <div className={styles.notFoundContainer}>
       <h1>404</h1>
       <p>Página Não Encontrada</p>
-      <Link to="/" className={styles.homeLink}>Voltar para a página inicial</Link>
+      <Link to="/" className={`${styles.homeLink} darken-primary-green`}>Voltar para a página inicial</Link>
     </div>
   );
 }

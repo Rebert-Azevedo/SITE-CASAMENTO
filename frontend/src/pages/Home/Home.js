@@ -12,13 +12,15 @@ function HomePage() {
       try {
         const response = {
           data: {
+            // A URL da foto do casal não será mais usada para o background,
+            // mas pode ser mantida na config para uso futuro ou em outra seção.
+            // foto_casal_url: 'https://via.placeholder.com/1400x700/B8A16C/B8A16C.png',
             nome_noivo: 'Rebert',
             nome_noiva: 'Juliane',
-            data_casamento: '2026-05-10',
-            mensagem_boas_vindas_site: 'Sejam bem-vindos ao site do nosso Noivado! Estamos muito felizes em compartilhar esse momento com vocês.',
-            foto_casal_url: 'https://via.placeholder.com/1200x600?text=Foto+do+Casal+Aqui',
-            local_cerimonia: 'Catedral Basílica Primacial de São Salvador',
-            local_recepcao: 'Espaço de Eventos Maravilhoso'
+            data_noivado: '2025-10-12',
+            mensagem_boas_vindas_site: 'Nosso Noivado Está Chegando!',
+            local_evento: 'Salão de Festas Ouro Verde, Salvador - BA',
+            link_Maps_evento: 'URL_DO_Maps_DO_EVENTO'
           }
         };
         setConfig(response.data);
@@ -35,29 +37,34 @@ function HomePage() {
   if (loading) return <div className={styles.loading}>Carregando...</div>;
   if (error) return <div className={styles.error}>{error}</div>;
 
-  const weddingDate = new Date(config.data_casamento + 'T00:00:00');
+  const engagementDate = new Date(config.data_noivado + 'T00:00:00');
   const now = new Date();
-  const timeUntilWedding = weddingDate.getTime() - now.getTime();
-  const days = Math.floor(timeUntilWedding / (1000 * 60 * 60 * 24));
+  const timeUntilEvent = engagementDate.getTime() - now.getTime();
+  const days = Math.floor(timeUntilEvent / (1000 * 60 * 60 * 24));
 
   return (
     <div className={styles.homeContainer}>
-      <img src={config.foto_casal_url} alt="Foto do Casal" className={styles.couplePhoto} />
-      <h1>{config.mensagem_boas_vindas_site}</h1>
-      <p className={styles.names}>
-        {config.nome_noivo} & {config.nome_noiva}
-      </p>
-      <p className={styles.date}>
-        Nosso grande dia: {new Date(config.data_casamento).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
-      </p>
-      <p className={styles.countdown}>
-        Faltam {days > 0 ? days : 0} dias!
-      </p>
-      <div className={styles.eventInfo}>
-        <h3>Cerimônia</h3>
-        <p>{config.local_cerimonia}</p>
-        <h3>Recepção</h3>
-        <p>{config.local_recepcao}</p>
+      <div className={styles.heroSection}>
+        {/* REMOVIDO: A tag <img> do casal */}
+        <div className={styles.overlayText}> {/* Agora este div será o "cartão" central */}
+          <h1 className={styles.heroTitle}>{config.mensagem_boas_vindas_site}</h1>
+          <p className={styles.names}>
+            <span>{config.nome_noivo}</span> & <span>{config.nome_noiva}</span>
+          </p>
+          <p className={styles.date}>
+            Nosso Dia Especial: {new Date(config.data_noivado).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
+          </p>
+          <p className={styles.countdown}>
+            Faltam <span className={styles.countdownNumber}>{days > 0 ? days : 0}</span> dias!
+          </p>
+        </div>
+      </div>
+
+      <div className={styles.eventInfoSection}>
+        <div className={styles.eventInfoCard}>
+          <h3>Nosso Evento</h3>
+          <p>{config.local_evento}</p>
+        </div>
       </div>
     </div>
   );

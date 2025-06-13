@@ -4,49 +4,94 @@
 }
 
 .giftListContainer h2 {
-    font-size: 2.2em;
-    color: #444;
-    margin-bottom: 15px;
+    font-size: 2.8em; /* Título maior */
+    color: var(--color-primary-green); /* Título em verde */
+    margin-bottom: 10px;
 }
 
-.giftListContainer p {
-    font-size: 1.1em;
-    color: #666;
-    margin-bottom: 30px;
+.subtitle {
+    font-size: 1.15em; /* Ligeiramente maior */
+    color: var(--color-text-medium);
+    margin-bottom: 50px; /* Mais espaçamento */
 }
 
 .categoryFilter {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
+    background-color: var(--color-white);
+    padding: 25px; /* Mais padding */
+    border-radius: 10px; /* Mais arredondado */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Sombra mais proeminente */
+    display: inline-block;
+    border: 1px solid var(--color-border-subtle);
 }
 
 .categoryFilter label {
-    font-weight: bold;
-    margin-right: 10px;
-    color: #555;
+    font-weight: 600;
+    margin-right: 20px;
+    color: var(--color-text-dark);
+    font-size: 1.1em;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .categoryFilter select {
-    padding: 8px 12px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    padding: 12px 18px; /* Mais padding */
+    border-radius: 8px;
+    border: 1px solid var(--color-border-subtle);
     font-size: 1em;
     cursor: pointer;
+    background-color: var(--color-background-light);
+    color: var(--color-text-dark);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.categoryFilter select:hover,
+.categoryFilter select:focus {
+    border-color: var(--color-primary-gold); /* Borda em dourado no hover/focus */
+    box-shadow: 0 0 0 4px rgba(var(--color-primary-gold), 0.15);
+    outline: none;
 }
 
 .giftsGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Cards maiores */
+    gap: 40px; /* Mais espaçamento entre os cards */
     justify-content: center;
+    max-width: 1300px; /* Largura máxima maior */
+    margin: 0 auto;
+}
+
+.noGiftsMessage {
+    font-size: 1.3em;
+    color: var(--color-text-medium);
+    padding: 60px;
+    text-align: center;
+    grid-column: 1 / -1;
 }
 
 .loading, .error {
     text-align: center;
     padding: 50px;
     font-size: 1.2em;
-    color: #888;
+    color: var(--color-text-medium);
 }
 
 .error {
-    color: #dc3545;
+    color: var(--color-error);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .giftListContainer h2 {
+        font-size: 2.2em;
+    }
+    .subtitle {
+        font-size: 1em;
+    }
+    .categoryFilter {
+        padding: 18px;
+    }
+    .giftsGrid {
+        gap: 25px;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
 }

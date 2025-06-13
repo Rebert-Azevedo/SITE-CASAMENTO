@@ -149,11 +149,11 @@ function GiftManagementPage() {
             <option value="comprado">Comprado</option>
           </select>
         </div>
-        <button type="submit" className={styles.submitButton}>
+        <button type="submit" className={`${styles.submitButton} darken-primary-gold`}>
           {editingGiftId ? 'Atualizar Presente' : 'Adicionar Presente'}
         </button>
         {editingGiftId && (
-          <button type="button" onClick={() => { setEditingGiftId(null); setFormData({ nome: '', descricao: '', valor_estimado: '', imagem_url: '', url_compra: '', categoria_id: '', status: 'disponível' }); }} className={styles.cancelEditButton}>
+          <button type="button" onClick={() => { setEditingGiftId(null); setFormData({ nome: '', descricao: '', valor_estimado: '', imagem_url: '', url_compra: '', categoria_id: '', status: 'disponível' }); }} className={`${styles.cancelEditButton} darken-text-medium`}>
             Cancelar Edição
           </button>
         )}
@@ -184,7 +184,7 @@ function GiftManagementPage() {
               <td>{gift.status}</td>
               <td>{gift.status !== 'disponível' ? (gift.nome_reservou || 'Desconhecido') : '-'}</td>
               <td>
-                <button onClick={() => handleEdit(gift)} className={styles.actionButtonEdit}>Editar</button>
+                <button onClick={() => handleEdit(gift)} className={`${styles.actionButtonEdit} darken-secondary-gold`}>Editar</button>
                 <button onClick={() => handleDelete(gift.id)} className={styles.actionButtonDelete}>Excluir</button>
               </td>
             </tr>

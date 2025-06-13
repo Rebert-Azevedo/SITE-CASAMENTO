@@ -1,73 +1,186 @@
 .homeContainer {
     text-align: center;
-    padding: 30px 20px;
+    padding: 0;
+    max-width: none;
 }
 
-.couplePhoto {
+.heroSection {
+    position: relative;
     width: 100%;
-    max-width: 800px;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    height: 70vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom right, var(--color-background-light), var(--color-secondary-gold));
 }
 
-.homeContainer h1 {
-    font-size: 2.5em;
-    color: #444;
-    margin-bottom: 20px;
+.overlayText {
+    /* Este div agora é o "cartão" central com o texto */
+    position: relative; /* Para garantir z-index acima do fundo, embora possa não ser estritamente necessário */
+    z-index: 10;
+    background-color: var(--color-secondary-green); /* Fundo sólido verde para o bloco de texto */
+    color: var(--color-white); /* Texto em branco para contrastar com o verde */
+    padding: 40px 50px; /* Mais padding para o bloco */
+    border-radius: 15px; /* Cantos mais arredondados */
+    max-width: 700px; /* Limita a largura do bloco */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Sombra mais forte */
+    text-shadow: none; /* Remove a sombra do texto se o fundo for sólido */
+    display: flex; /* Para centralizar conteúdo interno */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.heroTitle {
+    font-size: 3.8em;
+    color: var(--color-white); /* Título em branco */
+    margin-bottom: 15px;
+    letter-spacing: 0.08em; /* Aumenta o espaçamento entre letras para elegância */
+    text-transform: uppercase;
+    line-height: 1.1;
 }
 
 .names {
-    font-size: 1.8em;
-    font-weight: bold;
-    color: #666;
-    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2em;
+    font-weight: 700;
+    color: var(--color-white); /* Nomes em branco */
+    margin-bottom: 20px;
+}
+
+.names span {
+    color: var(--color-secondary-gold); /* Destaque nos nomes com dourado secundário */
+    padding: 0 8px;
 }
 
 .date {
-    font-size: 1.2em;
-    color: #777;
-    margin-bottom: 10px;
+    font-size: 1.6em;
+    color: var(--color-white); /* Data em branco */
+    margin-bottom: 20px;
+    font-family: 'Lora', serif;
+    letter-spacing: 0.05em;
 }
 
 .countdown {
-    font-size: 1.5em;
-    color: #dc3545;
+    font-size: 2em;
+    color: var(--color-primary-gold); /* Contagem regressiva em dourado principal */
     font-weight: bold;
-    margin-bottom: 30px;
+    letter-spacing: 0.1em;
+    background-color: rgba(255,255,255,0.1); /* Fundo sutil para o countdown */
+    display: inline-block;
+    padding: 10px 20px; /* Mais padding */
+    border-radius: 8px; /* Mais arredondado */
+    margin-top: 10px;
 }
 
-.eventInfo {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 25px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    max-width: 600px;
+.countdownNumber {
+    font-size: 1.4em;
+    color: var(--color-white); /* Número em branco */
+    font-family: 'Open Sans', sans-serif;
+}
+
+.eventInfoSection {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 60px 20px;
+    max-width: 1280px;
     margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.eventInfoCard {
+    background-color: var(--color-white);
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
     text-align: left;
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    border-top: 5px solid var(--color-primary-gold);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.eventInfo h3 {
-    color: #555;
+.eventInfoCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.eventInfoCard h3 {
+    font-size: 2em;
+    color: var(--color-primary-green);
     margin-top: 0;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
     padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-border-subtle);
 }
 
-.eventInfo p {
-    margin-bottom: 10px;
-    line-height: 1.6;
+.eventInfoCard p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: var(--color-text-dark);
 }
 
 .loading, .error {
     text-align: center;
     padding: 50px;
     font-size: 1.2em;
-    color: #888;
+    color: var(--color-text-medium);
 }
 
 .error {
-    color: #dc3545;
+    color: var(--color-error);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .heroSection {
+        height: 60vh;
+    }
+    .overlayText {
+        padding: 30px 40px;
+        max-width: 95%;
+    }
+    .heroTitle {
+        font-size: 3em;
+        letter-spacing: 0.05em;
+    }
+    .names {
+        font-size: 2.5em;
+    }
+    .date, .countdown {
+        font-size: 1.4em;
+    }
+    .eventInfoSection {
+        padding: 40px 15px;
+        gap: 25px;
+    }
+    .eventInfoCard {
+        padding: 25px;
+        min-width: 90%;
+    }
+    .eventInfoCard h3 {
+        font-size: 1.6em;
+    }
+}
+
+@media (max-width: 480px) {
+    .heroTitle {
+        font-size: 2.2em;
+        letter-spacing: 0.03em;
+    }
+    .names {
+        font-size: 1.8em;
+    }
+    .date, .countdown {
+        font-size: 1.1em;
+    }
+    .overlayText {
+        padding: 25px;
+    }
+    .countdown {
+        padding: 8px 15px;
+        font-size: 1.8em;
+    }
 }

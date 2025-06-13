@@ -21,7 +21,7 @@ function AdminDashboardPage() {
             <li><Link to="/admin/presentes" className={styles.sidebarLink}>Gerenciar Presentes</Link></li>
             <li><Link to="/admin/convidados" className={styles.sidebarLink}>Gerenciar Convidados</Link></li>
             <li><Link to="/admin/rsvp" className={styles.sidebarLink}>Gerenciar RSVP</Link></li>
-            <li><button onClick={handleLogout} className={styles.logoutButton}>Sair</button></li>
+            <li><button onClick={handleLogout} className={`${styles.logoutButton} darken-primary-gold`}>Sair</button></li>
           </ul>
         </nav>
       </aside>

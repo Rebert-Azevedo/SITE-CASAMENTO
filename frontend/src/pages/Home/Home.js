@@ -10,17 +10,16 @@ function HomePage() {
   useEffect(() => {
     const fetchConfig = async () => {
       try {
+        // Mock da resposta da API de configurações
         const response = {
           data: {
-            // A URL da foto do casal não será mais usada para o background,
-            // mas pode ser mantida na config para uso futuro ou em outra seção.
-            // foto_casal_url: 'https://via.placeholder.com/1400x700/B8A16C/B8A16C.png',
+            // REMOVIDO: foto_casal_url da configuração
             nome_noivo: 'Rebert',
             nome_noiva: 'Juliane',
-            data_noivado: '2025-10-12',
-            mensagem_boas_vindas_site: 'Nosso Noivado Está Chegando!',
-            local_evento: 'Salão de Festas Ouro Verde, Salvador - BA',
-            link_Maps_evento: 'URL_DO_Maps_DO_EVENTO'
+            data_noivado: '2025-11-15',
+            mensagem_boas_vindas_site: 'Nosso Chá de Casa Nova Chegando!',
+            local_evento: 'Salão de Festas da Casa Nova, Salvador - BA',
+            link_Maps_evento: 'URL_DO_Maps_DO_CHA_DE_CASA_NOVA'
           }
         };
         setConfig(response.data);
@@ -37,22 +36,21 @@ function HomePage() {
   if (loading) return <div className={styles.loading}>Carregando...</div>;
   if (error) return <div className={styles.error}>{error}</div>;
 
-  const engagementDate = new Date(config.data_noivado + 'T00:00:00');
+  const eventDate = new Date(config.data_noivado + 'T00:00:00');
   const now = new Date();
-  const timeUntilEvent = engagementDate.getTime() - now.getTime();
+  const timeUntilEvent = eventDate.getTime() - now.getTime();
   const days = Math.floor(timeUntilEvent / (1000 * 60 * 60 * 24));
 
   return (
     <div className={styles.homeContainer}>
       <div className={styles.heroSection}>
-        {/* REMOVIDO: A tag <img> do casal */}
-        <div className={styles.overlayText}> {/* Agora este div será o "cartão" central */}
+        <div className={styles.overlayText}>
           <h1 className={styles.heroTitle}>{config.mensagem_boas_vindas_site}</h1>
           <p className={styles.names}>
             <span>{config.nome_noivo}</span> & <span>{config.nome_noiva}</span>
           </p>
           <p className={styles.date}>
-            Nosso Dia Especial: {new Date(config.data_noivado).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
+            Nosso Chá: {new Date(config.data_noivado).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
           </p>
           <p className={styles.countdown}>
             Faltam <span className={styles.countdownNumber}>{days > 0 ? days : 0}</span> dias!
@@ -62,7 +60,7 @@ function HomePage() {
 
       <div className={styles.eventInfoSection}>
         <div className={styles.eventInfoCard}>
-          <h3>Nosso Evento</h3>
+          <h3>Onde e Quando?</h3>
           <p>{config.local_evento}</p>
         </div>
       </div>

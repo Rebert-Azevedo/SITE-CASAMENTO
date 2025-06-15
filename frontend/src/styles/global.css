@@ -167,32 +167,3 @@ button:hover {
 .darken-primary-green:hover { background-color: #6D7B5C; } /* Escurece #8B9B75 */
 .darken-primary-gold:hover { background-color: #A6925B; } /* Escurece #B8A16C */
 .darken-text-medium:hover { background-color: #606060; } /* Escurece #757575 */
-
-/* frontend/src/styles/global.css - Adicione/Verifique estas regras no final do arquivo */
-
-/* Estilos para quando o modal está aberto (impede rolagem da página) */
-/* Aplicado a <html> e <body> para maior compatibilidade e controle */
-body.modal-open, html.modal-open {
-    overflow: hidden !important; /* Força a desativação da rolagem */
-    height: 100% !important;     /* Garante que a altura não seja dinâmica */
-    position: fixed !important;  /* Fixa a posição do corpo para evitar "shift" */
-    width: 100% !important;      /* Garante que a largura do body não encolha */
-    top: 0 !important;           /* Zera o top (evita rolagem se já houver um scroll) */
-    left: 0 !important;          /* Zera o left */
-}
-
-/* Regras para o modal que podem ter sido sobrescritas em outros lugares */
-.modalOverlay {
-    position: fixed !important; /* Deve ser fixed para cobrir a viewport */
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important; /* Garante que cubra toda a largura da viewport */
-    height: 100vh !important; /* Garante que cubra toda a altura da viewport */
-    z-index: 99999 !important; /* Z-INDEX EXTREMAMENTE ALTO para garantir sobreposição total */
-    /* Mantenha o resto das suas propriedades como background, display, justify-content, align-items */
-}
-
-.modalContent {
-    z-index: 100000 !important; /* Z-INDEX AINDA MAIS ALTO para o conteúdo do modal */
-    /* Mantenha o resto das suas propriedades como background, padding, border-radius, box-shadow, etc. */
-}

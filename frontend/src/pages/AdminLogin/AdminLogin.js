@@ -18,7 +18,7 @@ function AdminLoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
     setMessage('');
@@ -27,10 +27,10 @@ function AdminLoginPage() {
       return;
     }
     try {
-      // LOG DE DEBUG DO FRONTEND: O que está sendo enviado para a função login
-      console.log('Frontend AdminLogin.js - Enviando para login:', { email: loginEmail, senha: loginPassword });
-      await login(loginEmail, loginPassword); // Esta função faz a chamada API
-      navigate('/admin/presentes');
+        // LOG DE DEBUG DO FRONTEND: O que o frontend ESTÁ ENVIANDO no payload
+        console.log('Frontend - Enviando payload para login:', { email: loginEmail, senha: loginPassword }); // <<< ESTE LOG É FUNDAMENTAL!
+        await login(loginEmail, loginPassword);
+        navigate('/admin/presentes');
     } catch (err) {
       // LOG DE DEBUG DO FRONTEND: Erro detalhado no console do navegador
       console.error('Frontend AdminLogin.js - Login failed:', err.response?.data || err.message || err);

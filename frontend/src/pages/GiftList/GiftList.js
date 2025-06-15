@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../api/api';
-import GiftCard from '../../components/GiftCard/GiftCard';
 import styles from './GiftList.module.css';
+import GiftListItem from '../../components/GiftListItem/GiftListItem';
 
 function GiftListPage() {
   const [gifts, setGifts] = useState([]);
@@ -18,28 +18,22 @@ function GiftListPage() {
     setLoading(true);
     setError(null);
     try {
+      // Busca os presentes
       const giftsResponse = await api.get('/gifts');
       setGifts(giftsResponse.data);
 
-      // Mocks de categorias ajustados para o tema Noivado
-      const categoriesResponse = {
-        data: [
-          { id: 1, nome: 'Casa Nova' },
-          { id: 2, nome: 'Aparelhos' },
-          { id: 3, nome: 'Lazer' },
-          { id: 4, nome: 'Viagem' },
-          { id: 5, nome: 'Decoração' },
-        ]
-      };
-      setCategories(categoriesResponse.data);
+      // NOVO: Busca as categorias do backend dinamicamente
+      const categoriesResponse = await api.get('/categories'); // Faz a chamada para a nova API de categorias
+      setCategories(categoriesResponse.data); // Atualiza o estado das categorias com os dados do backend
 
     } catch (err) {
       setError('Erro ao carregar a lista de presentes ou categorias.');
-      console.error('Failed to fetch data:', err);
+      console.error('Failed to fetch data:', err.response?.data || err); // Log mais detalhado
     } finally {
       setLoading(false);
     }
   };
+
   const handleReserve = (giftId) => {
     setGifts(prevGifts =>
       prevGifts.map(gift =>
@@ -57,7 +51,8 @@ function GiftListPage() {
 
   return (
     <div className={styles.giftListContainer}>
-      <h2>Lista de Presentes do Nosso Noivado</h2> <p className={styles.subtitle}>Escolha um presente para nos ajudar a montar o nosso novo lar!</p>
+      <h2>Lista de Presentes do Nosso Chá</h2>
+      <p className={styles.subtitle}>Escolha um presente para abençoar o nosso novo lar!</p>
 
       <div className={styles.categoryFilter}>
         <label htmlFor="category">Filtrar por Categoria:</label>
@@ -73,12 +68,12 @@ function GiftListPage() {
         </select>
       </div>
 
-      <div className={styles.giftsGrid}>
+      <div className={styles.giftsList}>
         {filteredGifts.length === 0 ? (
           <p className={styles.noGiftsMessage}>Nenhum presente encontrado nesta categoria.</p>
         ) : (
           filteredGifts.map(gift => (
-            <GiftCard key={gift.id} gift={gift} onReserve={handleReserve} />
+            <GiftListItem key={gift.id} gift={gift} onReserve={handleReserve} />
           ))
         )}
       </div>

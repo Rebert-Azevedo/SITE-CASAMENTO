@@ -10,8 +10,7 @@ function GiftManagementPage() {
     nome: '',
     descricao: '',
     valor_estimado: '',
-    imagem_url: '',
-    url_compra: '',
+    // REMOVIDO: imagem_url e url_compra do formData
     categoria_id: '',
     status: 'disponível'
   });
@@ -31,10 +30,10 @@ function GiftManagementPage() {
 
       const categoriesResponse = {
         data: [
-          { id: 1, nome: 'Cozinha' },
-          { id: 2, nome: 'Quarto' },
-          { id: 3, nome: 'Sala' },
-          { id: 4, nome: 'Eletrodomésticos' },
+          { id: 1, nome: 'Casa Nova' },
+          { id: 2, nome: 'Eletrodomésticos' },
+          { id: 3, nome: 'Lazer e Diversão' },
+          { id: 4, nome: 'Fundo para a Casa' },
           { id: 5, nome: 'Decoração' },
         ]
       };
@@ -58,17 +57,31 @@ function GiftManagementPage() {
     setError(null);
     try {
       if (editingGiftId) {
-        await api.put(`/gifts/${editingGiftId}`, formData);
+        // Envia apenas os campos necessários para o PUT
+        await api.put(`/gifts/${editingGiftId}`, {
+          categoria_id: formData.categoria_id,
+          nome: formData.nome,
+          descricao: formData.descricao,
+          valor_estimado: formData.valor_estimado,
+          status: formData.status
+        });
         alert('Presente atualizado com sucesso!');
       } else {
-        await api.post('/gifts', formData);
+        // Envia apenas os campos necessários para o POST
+        await api.post('/gifts', {
+          categoria_id: formData.categoria_id,
+          nome: formData.nome,
+          descricao: formData.descricao,
+          valor_estimado: formData.valor_estimado
+          // status será 'disponível' por padrão no backend
+        });
         alert('Presente adicionado com sucesso!');
       }
-      setFormData({
-        nome: '', descricao: '', valor_estimado: '', imagem_url: '', url_compra: '', categoria_id: '', status: 'disponível'
+      setFormData({ // Limpa o formulário
+        nome: '', descricao: '', valor_estimado: '', categoria_id: '', status: 'disponível'
       });
       setEditingGiftId(null);
-      fetchData();
+      fetchData(); // Recarrega os dados
     } catch (err) {
       setError('Erro ao salvar presente: ' + (err.response?.data?.message || 'Erro desconhecido'));
       console.error('Failed to save gift:', err);
@@ -81,8 +94,6 @@ function GiftManagementPage() {
       nome: gift.nome,
       descricao: gift.descricao || '',
       valor_estimado: gift.valor_estimado || '',
-      imagem_url: gift.imagem_url || '',
-      url_compra: gift.url_compra || '',
       categoria_id: gift.categoria_id || '',
       status: gift.status
     });
@@ -124,14 +135,7 @@ function GiftManagementPage() {
           <label htmlFor="valor_estimado">Valor Estimado:</label>
           <input type="number" id="valor_estimado" name="valor_estimado" value={formData.valor_estimado} onChange={handleChange} step="0.01" />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="imagem_url">URL da Imagem:</label>
-          <input type="url" id="imagem_url" name="imagem_url" value={formData.imagem_url} onChange={handleChange} />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="url_compra">URL para Compra:</label>
-          <input type="url" id="url_compra" name="url_compra" value={formData.url_compra} onChange={handleChange} />
-        </div>
+        {/* REMOVIDO: Campos de imagem_url e url_compra */}
         <div className={styles.formGroup}>
           <label htmlFor="categoria_id">Categoria:</label>
           <select id="categoria_id" name="categoria_id" value={formData.categoria_id} onChange={handleChange}>
@@ -141,19 +145,22 @@ function GiftManagementPage() {
             ))}
           </select>
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="status">Status:</label>
-          <select id="status" name="status" value={formData.status} onChange={handleChange} required>
-            <option value="disponível">Disponível</option>
-            <option value="reservado">Reservado</option>
-            <option value="comprado">Comprado</option>
-          </select>
-        </div>
+        {/* O status só é alterável em edição se o presente já existe, ou se quiser dar opção no novo */}
+        {editingGiftId && (
+          <div className={styles.formGroup}>
+            <label htmlFor="status">Status:</label>
+            <select id="status" name="status" value={formData.status} onChange={handleChange} required>
+              <option value="disponível">Disponível</option>
+              <option value="reservado">Reservado</option>
+              <option value="comprado">Comprado</option>
+            </select>
+          </div>
+        )}
         <button type="submit" className={`${styles.submitButton} darken-primary-gold`}>
           {editingGiftId ? 'Atualizar Presente' : 'Adicionar Presente'}
         </button>
         {editingGiftId && (
-          <button type="button" onClick={() => { setEditingGiftId(null); setFormData({ nome: '', descricao: '', valor_estimado: '', imagem_url: '', url_compra: '', categoria_id: '', status: 'disponível' }); }} className={`${styles.cancelEditButton} darken-text-medium`}>
+          <button type="button" onClick={() => { setEditingGiftId(null); setFormData({ nome: '', descricao: '', valor_estimado: '', categoria_id: '', status: 'disponível' }); }} className={`${styles.cancelEditButton} darken-text-medium`}>
             Cancelar Edição
           </button>
         )}

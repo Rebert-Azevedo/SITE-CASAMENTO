@@ -11,15 +11,15 @@ function HomePage() {
     const fetchConfig = async () => {
       try {
         // Mock da resposta da API de configurações
+        // Em produção, você faria uma chamada real para /api/config
         const response = {
           data: {
-            // REMOVIDO: foto_casal_url da configuração
             nome_noivo: 'Rebert',
             nome_noiva: 'Juliane',
-            data_noivado: '2025-11-15',
-            mensagem_boas_vindas_site: 'Nosso Chá de Casa Nova Chegando!',
+            data_noivado: '2025-09-07', // Data ajustada
+            mensagem_boas_vindas_site: 'Chá de Casa Nova', // Mensagem ajustada
             local_evento: 'Salão de Festas da Casa Nova, Salvador - BA',
-            link_Maps_evento: 'URL_DO_Maps_DO_CHA_DE_CASA_NOVA'
+            link_Maps_evento: 'URL_DO_Maps_DO_CHA_DE_CASA_NOVA' // Nome da chave ajustado
           }
         };
         setConfig(response.data);
@@ -39,7 +39,7 @@ function HomePage() {
   const eventDate = new Date(config.data_noivado + 'T00:00:00');
   const now = new Date();
   const timeUntilEvent = eventDate.getTime() - now.getTime();
-  const days = Math.floor(timeUntilEvent / (1000 * 60 * 60 * 24));
+  const days = Math.floor(timeUntilEvent / (1000 * 60 * 60 * 24)); // Corrigido cálculo de dias
 
   return (
     <div className={styles.homeContainer}>
@@ -55,6 +55,10 @@ function HomePage() {
           <p className={styles.countdown}>
             Faltam <span className={styles.countdownNumber}>{days > 0 ? days : 0}</span> dias!
           </p>
+          <div className={styles.verse}>
+            <p>"Nós amamos porque ele nos amou primeiro."</p>
+            <p>1 João 4:19</p>
+          </div>
         </div>
       </div>
 

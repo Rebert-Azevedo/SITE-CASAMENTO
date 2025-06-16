@@ -2,19 +2,37 @@
 
 /* Variáveis de Cores (Nova Paleta) */
 :root {
-    --color-primary-green: #8B9B75; /* Verde-oliva suave */
-    --color-secondary-green: #A3B590; /* Verde mais claro/suave */
-    --color-primary-gold: #B8A16C; /* Dourado terroso/ocre */
-    --color-secondary-gold: #D2C49A; /* Dourado mais claro/suave */
-    --color-background-light: #FBFBF6; /* Fundo off-white muito suave */
+    --color-primary-green: #8B9B75;
+    /* Verde-oliva suave */
+    --color-secondary-green: #A3B590;
+    /* Verde mais claro/suave */
+    --color-primary-gold: #B8A16C;
+    /* Dourado terroso/ocre */
+    --color-secondary-gold: #D2C49A;
+    /* Dourado mais claro/suave */
+    --color-background-light: #FBFBF6;
+    /* Fundo off-white muito suave */
     --color-white: #FFFFFF;
-    --color-text-dark: #4A4A4A; /* Cinza escuro quente para texto principal */
-    --color-text-medium: #757575; /* Cinza médio para texto secundário */
-    --color-border-subtle: #E0E0DB; /* Borda sutil */
-    --color-accent-dark: #6D7B5C; /* Verde mais escuro para acentos */
-
-    --color-error: #CC6666; /* Vermelho mais suave para erros */
-    --color-success: #66CC99; /* Verde mais suave para sucesso */
+    --color-text-dark: #4A4A4A;
+    /* Cinza escuro quente para texto principal */
+    --color-text-medium: #757575;
+    /* Cinza médio para texto secundário */
+    --color-border-subtle: #E0E0DB;
+    /* Borda sutil */
+    --color-accent-dark: #6D7B5C;
+    /* Verde mais escuro para acentos */
+    --color-error: #CC6666;
+    /* Vermelho mais suave para erros */
+    --color-success: #66CC99;
+    /* Verde mais suave para sucesso */
+    --color-primary-gold-rgb: 184, 161, 108;
+    /* RGB de #B8A16C */
+    --color-primary-green-rgb: 139, 155, 117;
+    /* RGB de #8B9B75 */
+    --color-error-rgb: 204, 102, 102;
+    /* RGB de #CC6666 */
+    --color-success-rgb: 102, 204, 153;
+    /* RGB de #66CC99 */
 }
 
 /* Base Resets */
@@ -27,27 +45,46 @@
 }
 
 body {
-    font-family: 'Lora', serif; /* Fonte para o corpo do texto */
-    line-height: 1.7; /* Mais espaçamento entre linhas */
-    background-color: var(--color-background-light);
+    font-family: 'Lora', serif;
+    line-height: 1.7;
+    /* ALTERADO: Gradiente dourado como plano de fundo */
+    background: linear-gradient(to bottom right, var(--color-background-light), var(--color-secondary-gold), var(--color-primary-gold));
+    background-attachment: fixed;
+    min-height: 100vh;
     color: var(--color-text-dark);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 /* Tipografia */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif; /* Fonte elegante para títulos */
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Playfair Display', serif;
+    /* Fonte elegante para títulos */
     color: var(--color-text-dark);
     margin-bottom: 0.8em;
     line-height: 1.2;
 }
 
-h1 { font-size: 3.2em; } /* Títulos maiores */
-h2 { font-size: 2.6em; }
-h3 { font-size: 2.0em; }
-h4 { font-size: 1.6em; }
-h5 { font-size: 1.3em; }
+h1 {
+    font-size: 3.2em;
+}
+
+/* Títulos maiores */
+h2 {
+    font-size: 2.6em;
+}
+
+h3 {
+    font-size: 2.0em;
+}
+
+h4 {
+    font-size: 1.6em;
+}
+
+h5 {
+    font-size: 1.3em;
+}
 
 p {
     margin-bottom: 1.2em;
@@ -55,40 +92,40 @@ p {
 }
 
 a {
-    color: var(--color-primary-gold); /* Links em dourado */
+    color: var(--color-primary-gold);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--color-accent-dark); /* Verde escuro no hover */
+    color: var(--color-accent-dark);
     text-decoration: underline;
 }
 
 /* Layout Básico */
 main {
-    padding: 60px 30px; /* Mais padding geral */
-    min-height: calc(100vh - 200px); /* Ajuste com base na altura do seu header/footer */
-    max-width: 1280px; /* Limita a largura do conteúdo para melhor leitura */
+    padding: 60px 30px;
+    min-height: calc(100vh - 200px);
+    max-width: 1280px;
     margin: 0 auto;
 }
 
 /* Botões Genéricos */
 button {
-    padding: 14px 28px; /* Botões maiores */
+    padding: 14px 28px;
     border: none;
-    border-radius: 8px; /* Mais arredondado */
+    border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 1.05em; /* Fonte ligeiramente maior */
-    font-family: 'Open Sans', sans-serif; /* Fonte para botões */
+    font-size: 1.05em;
+    font-family: 'Open Sans', sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-    text-transform: uppercase; /* Detalhe: texto em maiúsculas */
+    text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
 button:hover {
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1); /* Sombra mais proeminente no hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Formulários */
@@ -111,27 +148,27 @@ button:hover {
 .formGroup textarea,
 .formGroup select {
     width: 100%;
-    padding: 14px; /* Mais padding */
+    padding: 14px;
     border: 1px solid var(--color-border-subtle);
-    border-radius: 8px; /* Mais arredondado */
+    border-radius: 8px;
     font-size: 1em;
     color: var(--color-text-dark);
     background-color: var(--color-white);
-    box-shadow: inset 0 1px 4px rgba(0,0,0,0.04); /* Sombra interna mais suave */
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.04);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .formGroup input:focus,
 .formGroup textarea:focus,
 .formGroup select:focus {
-    border-color: var(--color-primary-green); /* Borda em verde no foco */
-    box-shadow: 0 0 0 4px rgba(var(--color-primary-green), 0.15); /* Sombra de foco mais suave */
+    border-color: var(--color-primary-green);
+    box-shadow: 0 0 0 4px rgba(var(--color-primary-green), 0.15);
     outline: none;
 }
 
 .errorMessage {
     color: var(--color-error);
-    background-color: rgba(var(--color-error), 0.1); /* Fundo sutil */
+    background-color: rgba(var(--color-error), 0.1);
     border: 1px solid rgba(var(--color-error), 0.2);
     padding: 12px;
     border-radius: 6px;
@@ -151,19 +188,14 @@ button:hover {
     font-weight: 500;
 }
 
-/* Helpers para cores de variáveis no CSS (se não usar pré-processador) */
-/* function darken(color, percent) {
-    // Implementação básica para demonstração, melhor usar cores fixas ou pré-processador
-    const f = parseInt(color.slice(1), 16);
-    const t = percent < 0 ? 0 : 255;
-    const p = percent < 0 ? percent * -1 : percent;
-    const R = f >> 16;
-    const G = (f >> 8) & 0x00FF;
-    const B = f & 0x0000FF;
-    return "#" + (0x1000000 + (Math.round((t - R) * p) + R) * 0x10000 + (Math.round((t - G) * p) + G) * 0x100 + (Math.round((t - B) * p) + B)).toString(16).slice(1);
-} */
+.darken-primary-green:hover {
+    background-color: #6D7B5C;
+}
 
-/* Cores fixas para hover, se preferir não usar variáveis com lighten/darken complexos */
-.darken-primary-green:hover { background-color: #6D7B5C; } /* Escurece #8B9B75 */
-.darken-primary-gold:hover { background-color: #A6925B; } /* Escurece #B8A16C */
-.darken-text-medium:hover { background-color: #606060; } /* Escurece #757575 */
+.darken-primary-gold:hover {
+    background-color: #A6925B;
+}
+
+.darken-text-medium:hover {
+    background-color: #606060;
+}

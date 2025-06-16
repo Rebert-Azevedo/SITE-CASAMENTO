@@ -7,83 +7,101 @@
 .heroSection {
     position: relative;
     width: 100%;
-    height: 70vh; 
+    height: 85vh; /* Altura generosa para o hero */
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom right, var(--color-background-light), var(--color-secondary-gold));
+    background: linear-gradient(to bottom right, var(--color-background-light), var(--color-secondary-gold), var(--color-primary-gold));
+    overflow: hidden;
 }
 
 .overlayText {
-    /* Este div agora é o "cartão" central com o texto */
-    position: relative; /* Para garantir z-index acima do fundo, embora possa não ser estritamente necessário */
+    position: relative;
     z-index: 10;
-    background-color: var(--color-secondary-green); /* Fundo sólido verde para o bloco de texto */
-    color: var(--color-white); /* Texto em branco para contrastar com o verde */
-    padding: 40px 50px; /* Mais padding para o bloco */
-    border-radius: 15px; /* Cantos mais arredondados */
-    max-width: 700px; /* Limita a largura do bloco */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Sombra mais forte */
-    text-shadow: none; /* Remove a sombra do texto se o fundo for sólido */
-    display: flex; /* Para centralizar conteúdo interno */
+    background-color: var(--color-white);
+    padding: 50px 60px; /* Mais padding para mais "ar" */
+    border-radius: 15px;
+    max-width: 800px; /* Limita a largura para melhor leitura */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08); /* Sombra mais suave e elegante */
+    text-shadow: none;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 1px solid var(--color-border-subtle); /* Borda sutil */
 }
 
 .heroTitle {
+    font-family: 'Playfair Display', serif;
     font-size: 3.8em;
-    color: var(--color-white); /* Título em branco */
-    margin-bottom: 15px;
-    letter-spacing: 0.08em; /* Aumenta o espaçamento entre letras para elegância */
-    text-transform: uppercase;
+    color: var(--color-text-dark);
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+    text-transform: capitalize;
     line-height: 1.1;
 }
 
 .names {
     font-family: 'Playfair Display', serif;
-    font-size: 3.2em;
+    font-size: 3.0em; /* Tamanho ajustado para evitar corte */
     font-weight: 700;
-    color: var(--color-white); /* Nomes em branco */
-    margin-bottom: 20px;
+    color: var(--color-primary-green);
+    margin-bottom: 25px;
 }
 
 .names span {
-    color: var(--color-secondary-gold); /* Destaque nos nomes com dourado secundário */
-    padding: 0 8px;
+    color: var(--color-primary-gold);
+    padding: 0 10px;
 }
 
 .date {
-    font-size: 1.6em;
-    color: var(--color-white); /* Data em branco */
-    margin-bottom: 20px;
     font-family: 'Lora', serif;
-    letter-spacing: 0.05em;
+    font-size: 1.8em;
+    color: var(--color-text-medium);
+    margin-bottom: 25px;
+    letter-spacing: 0.03em;
 }
 
 .countdown {
-    font-size: 2em;
-    color: var(--color-primary-gold); /* Contagem regressiva em dourado principal */
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2.2em;
+    color: var(--color-primary-gold);
     font-weight: bold;
     letter-spacing: 0.1em;
-    background-color: rgba(255,255,255,0.1); /* Fundo sutil para o countdown */
+    background-color: rgba(var(--color-primary-gold-rgb), 0.1);
     display: inline-block;
-    padding: 10px 20px; /* Mais padding */
-    border-radius: 8px; /* Mais arredondado */
-    margin-top: 10px;
+    padding: 12px 25px;
+    border-radius: 8px;
+    margin-top: 15px;
+    border: 1px solid rgba(var(--color-primary-gold-rgb), 0.2);
 }
 
 .countdownNumber {
-    font-size: 1.4em;
-    color: var(--color-white); /* Número em branco */
-    font-family: 'Open Sans', sans-serif;
+    font-size: 1.3em;
+    color: var(--color-primary-green);
+}
+
+.verse {
+    margin-top: 40px;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1.1em;
+    color: var(--color-text-medium);
+    line-height: 1.6;
+    max-width: 600px;
+    border-top: 1px solid var(--color-border-subtle);
+    padding-top: 30px;
+}
+
+.verse p {
+    margin-bottom: 5px;
 }
 
 .eventInfoSection {
     display: flex;
     justify-content: center;
     gap: 40px;
-    padding: 60px 20px;
+    padding: 80px 20px;
     max-width: 1280px;
     margin: 0 auto;
     flex-wrap: wrap;
@@ -92,8 +110,8 @@
 .eventInfoCard {
     background-color: var(--color-white);
     border-radius: 12px;
-    padding: 35px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     text-align: left;
     flex: 1;
     min-width: 300px;
@@ -103,8 +121,8 @@
 }
 
 .eventInfoCard:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    transform: translateY(-12px);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.15);
 }
 
 .eventInfoCard h3 {
@@ -133,54 +151,66 @@
     color: var(--color-error);
 }
 
-/* Responsividade */
+/* Responsividade para Nomes Cortados e Layout Geral */
 @media (max-width: 768px) {
     .heroSection {
-        height: 60vh;
+        height: 70vh;
     }
     .overlayText {
-        padding: 30px 40px;
-        max-width: 95%;
+        padding: 40px;
+        max-width: 90%;
     }
     .heroTitle {
-        font-size: 3em;
+        font-size: 2.8em;
         letter-spacing: 0.05em;
     }
     .names {
-        font-size: 2.5em;
+        font-size: 2.5em; /* Ajusta o tamanho da fonte para telas médias */
     }
     .date, .countdown {
         font-size: 1.4em;
     }
     .eventInfoSection {
-        padding: 40px 15px;
+        padding: 50px 15px;
         gap: 25px;
     }
     .eventInfoCard {
-        padding: 25px;
+        padding: 30px;
         min-width: 90%;
     }
     .eventInfoCard h3 {
         font-size: 1.6em;
     }
+    .verse {
+        margin-top: 30px;
+        padding-top: 20px;
+        font-size: 1em;
+    }
 }
 
 @media (max-width: 480px) {
+    .heroSection {
+        height: 65vh;
+    }
+    .overlayText {
+        padding: 25px;
+        max-width: 95%;
+    }
     .heroTitle {
-        font-size: 2.2em;
+        font-size: 2em;
         letter-spacing: 0.03em;
     }
     .names {
-        font-size: 1.8em;
+        font-size: 1.8em; /* Ajusta o tamanho da fonte para telas pequenas */
+    }
+    .names span {
+        padding: 0 5px;
     }
     .date, .countdown {
         font-size: 1.1em;
     }
-    .overlayText {
-        padding: 25px;
-    }
     .countdown {
-        padding: 8px 15px;
+        padding: 10px 18px;
         font-size: 1.8em;
     }
 }

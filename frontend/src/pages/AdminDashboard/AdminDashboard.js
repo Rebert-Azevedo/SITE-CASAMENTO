@@ -1,3 +1,4 @@
+// frontend/src/pages/AdminDashboard/AdminDashboard.js
 import React from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
@@ -20,7 +21,6 @@ function AdminDashboardPage() {
           <ul>
             <li><Link to="/admin/presentes" className={styles.sidebarLink}>Gerenciar Presentes</Link></li>
             <li><Link to="/admin/convidados" className={styles.sidebarLink}>Gerenciar Convidados</Link></li>
-            <li><Link to="/admin/rsvp" className={styles.sidebarLink}>Gerenciar RSVP</Link></li>
             <li><button onClick={handleLogout} className={`${styles.logoutButton} darken-primary-gold`}>Sair</button></li>
           </ul>
         </nav>

@@ -104,10 +104,10 @@ a:hover {
 
 /* Layout Básico */
 main {
-    padding: 60px 30px;
+    padding: 0; /* ALTERADO: Removido todo o padding do main */
     min-height: calc(100vh - 200px);
-    max-width: 1280px;
-    margin: 0 auto;
+    max-width: 100%; /* ALTERADO: Garante que o main ocupe 100% da largura */
+    margin: 0; /* Garante que não haja margens */
 }
 
 /* Botões Genéricos */

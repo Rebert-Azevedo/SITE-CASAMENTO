@@ -1,20 +1,172 @@
+/* frontend/src/pages/AdminDashboard/GuestManagement/GuestManagement.module.css */
+
 .guestManagementContainer {
-    padding: 30px; /* Mais padding */
-    text-align: center;
-    background-color: var(--color-white);
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    border-top: 5px solid var(--color-primary-green);
+    padding: 20px;
 }
 
 .guestManagementContainer h2 {
-    font-size: 2.8em;
+    font-size: 2.5em;
     color: var(--color-primary-green);
     margin-bottom: 25px;
+    text-align: center;
 }
 
-.guestManagementContainer p {
+.guestManagementContainer h3 {
+    font-size: 1.8em;
+    color: var(--color-primary-green);
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--color-border-subtle);
+    padding-bottom: 10px;
+}
+
+.guestForm {
+    background-color: var(--color-white);
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    margin-bottom: 50px;
+    border-top: 5px solid var(--color-primary-gold);
+}
+
+.formGroup {
+    margin-bottom: 20px; /* Ajustado */
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 10px; /* Ajustado */
+    font-weight: bold;
+    color: var(--color-text-dark);
+}
+
+/* Incluindo type="number" nos estilos de input */
+.formGroup input[type="text"],
+.formGroup input[type="tel"],
+.formGroup input[type="number"] { /* NOVO: Adicionado input[type="number"] */
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.submitButton {
+    background-color: var(--color-primary-gold); /* Alterado para gold */
+    color: var(--color-white);
+    padding: 14px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-right: 20px;
+}
+.submitButton:hover {
+    background-color: darken(var(--color-primary-gold), 10%);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.cancelButton {
+    background-color: var(--color-text-medium);
+    color: var(--color-white);
+    padding: 14px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.cancelButton:hover {
+    background-color: darken(var(--color-text-medium), 10%);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.errorMessage {
+    color: var(--color-error);
+    background-color: rgba(var(--color-error-rgb), 0.1);
+    border: 1px solid rgba(var(--color-error-rgb), 0.2);
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: var(--color-border-subtle);
+    margin: 50px 0;
+}
+
+.guestsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: var(--color-white);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.guestsTable th,
+.guestsTable td {
+    border: 1px solid var(--color-border-subtle);
+    padding: 14px 18px;
+    text-align: left;
+}
+
+.guestsTable th {
+    background-color: var(--color-secondary-green);
+    font-weight: bold;
+    color: var(--color-white);
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 0.05em;
+}
+
+.guestsTable tbody tr:nth-child(even) {
+    background-color: var(--color-background-light);
+}
+
+.guestsTable tbody tr:hover {
+    background-color: lighten(var(--color-secondary-green), 20%);
+}
+
+.actionButtonEdit,
+.actionButtonDelete {
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    margin-right: 10px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.actionButtonEdit {
+    background-color: var(--color-secondary-gold);
+    color: var(--color-text-dark);
+}
+.actionButtonEdit:hover {
+    background-color: darken(var(--color-secondary-gold), 10%);
+}
+
+.actionButtonDelete {
+    background-color: var(--color-error);
+    color: var(--color-white);
+}
+.actionButtonDelete:hover {
+    background-color: darken(var(--color-error), 10%);
+}
+
+.loading, .error {
+    text-align: center;
+    padding: 50px;
+    font-size: 1.2em;
     color: var(--color-text-medium);
-    font-size: 1.15em;
-    line-height: 1.8;
+}
+.error {
+    color: var(--color-error);
 }

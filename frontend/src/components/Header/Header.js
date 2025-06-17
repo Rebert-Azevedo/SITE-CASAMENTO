@@ -1,3 +1,4 @@
+// frontend/src/components/Header/Header.js
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
@@ -23,7 +24,7 @@ function Header() {
               <li><button onClick={logout} className={`${styles.logoutButton} darken-primary-gold`}>Sair</button></li>
             </>
           ) : (
-            <li><Link to="/admin/login" className={styles.navLink}>Login</Link></li>
+            <li><Link to="/admin/login" className={styles.navLink}>Acesso Admin</Link></li>
           )}
         </ul>
       </nav>

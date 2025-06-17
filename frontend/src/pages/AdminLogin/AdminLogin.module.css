@@ -1,3 +1,5 @@
+/* frontend/src/pages/AdminLogin/AdminLogin.module.css */
+
 .loginContainer {
     display: flex;
     flex-direction: column;
@@ -23,10 +25,15 @@
     max-width: 480px;
     text-align: left;
     border-top: 5px solid var(--color-primary-gold);
+    padding-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .formGroup {
     margin-bottom: 25px;
+    width: 100%;
 }
 
 .formGroup label {
@@ -36,10 +43,9 @@
     color: var(--color-text-dark);
 }
 
-.formGroup input[type="text"],
 .formGroup input[type="password"],
-.formGroup input[type="email"] { /* NOVO: Estilo para input de email */
-    width: calc(100% - 24px); /* Ajustado para padding */
+.formGroup input[type="email"] {
+    width: calc(100% - 24px);
     padding: 14px 12px;
     border: 1px solid var(--color-border-subtle);
     border-radius: 8px;
@@ -47,66 +53,75 @@
     box-sizing: border-box;
 }
 
-.errorMessage {
-    color: var(--color-error);
-    background-color: rgba(var(--color-error), 0.1);
-    border: 1px solid rgba(var(--color-error), 0.2);
+.errorMessage, .successMessage {
     padding: 12px;
     border-radius: 8px;
-    margin-top: -15px;
     margin-bottom: 25px;
     text-align: center;
     font-weight: 500;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.successMessage { /* NOVO: Estilo para mensagens de sucesso */
+.errorMessage {
+    color: var(--color-error);
+    background-color: rgba(var(--color-error-rgb), 0.1);
+    border: 1px solid rgba(var(--color-error-rgb), 0.2);
+}
+
+.successMessage {
     color: var(--color-success);
-    background-color: rgba(var(--color-success), 0.1);
-    border: 1px solid rgba(var(--color-success), 0.2);
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 25px; /* Ajuste para não bugar com o formGroup */
-    text-align: center;
-    font-weight: 500;
+    background-color: rgba(var(--color-success-rgb), 0.1);
+    border: 1px solid rgba(var(--color-success-rgb), 0.2);
 }
 
 .submitButton {
-    background-color: var(--color-primary-green); /* Padrão para login */
+    background-color: var(--color-primary-green); /* Cor original do botão Entrar */
     color: var(--color-white);
     padding: 15px 25px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 1.2em;
     font-weight: bold;
-    width: 100%;
+    width: 70%; /* Largura reduzida */
+    max-width: 300px;
+    margin-bottom: 15px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
-/* Estilo específico para o botão quando está no modo de registro, se quiser diferenciar */
-/* .submitButton.darken-primary-gold {
-    background-color: var(--color-primary-gold);
-}
-.submitButton.darken-primary-gold:hover {
-    background-color: darken(var(--color-primary-gold), 10%);
-} */
-
-
-.toggleMode { /* NOVO: Estilo para o alternador de modo */
-    margin-top: 25px;
-    font-size: 0.95em;
-    color: var(--color-text-medium);
+.submitButton:hover {
+    /* CORRIGIDO: Escurece a cor original usando um filtro de brilho ou uma cor fixa */
+    background-color: var(--color-primary-green); /* Garante que a cor base seja mantida */
+    filter: brightness(0.9); /* Escurece 10% */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    color: var(--color-white); /* Garante que o texto permaneça branco */
 }
 
-.toggleLink { /* NOVO: Estilo para o link de alternância */
-    color: var(--color-primary-green);
-    font-weight: bold;
+.backButton {
+    background-color: var(--color-text-medium); /* Cor original do botão Voltar */
+    color: var(--color-white);
+    padding: 15px 25px;
+    border-radius: 8px;
     cursor: pointer;
-    text-decoration: underline;
-    transition: color 0.3s ease;
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 70%; /* Largura reduzida */
+    max-width: 300px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
-.toggleLink:hover {
-    color: var(--color-primary-gold);
+.backButton:hover {
+    /* CORRIGIDO: Escurece a cor original usando um filtro de brilho ou uma cor fixa */
+    background-color: var(--color-text-medium); /* Garante que a cor base seja mantida */
+    filter: brightness(0.9); /* Escurece 10% */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    color: var(--color-white); /* Garante que o texto permaneça branco */
 }
+
+/* As classes toggleMode e toggleLink não são mais necessárias nesta página */
+/* .toggleMode { display: none; } */
+/* .toggleLink { display: none; } */

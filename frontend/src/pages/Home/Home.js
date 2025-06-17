@@ -18,7 +18,7 @@ function HomePage() {
             nome_noiva: 'Juliane',
             data_noivado: '2025-09-07', // Data ajustada
             mensagem_boas_vindas_site: 'Chá de Casa Nova', // Mensagem ajustada
-            local_evento: 'Salão de Festas da Casa Nova, Salvador - BA',
+            local_evento: 'Salvador - BA',
             link_Maps_evento: 'URL_DO_Maps_DO_CHA_DE_CASA_NOVA' // Nome da chave ajustado
           }
         };
@@ -39,7 +39,7 @@ function HomePage() {
   const eventDate = new Date(config.data_noivado + 'T00:00:00');
   const now = new Date();
   const timeUntilEvent = eventDate.getTime() - now.getTime();
-  const days = Math.floor(timeUntilEvent / (1000 * 60 * 60 * 24)); // Corrigido cálculo de dias
+  const days = Math.floor(timeUntilEvent / (1000 * 60 * 60 * 24));
 
   return (
     <div className={styles.homeContainer}>

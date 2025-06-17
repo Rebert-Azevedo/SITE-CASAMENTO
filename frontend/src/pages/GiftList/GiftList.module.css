@@ -1,6 +1,8 @@
 .giftListContainer {
-    padding: 30px 20px;
+    padding: 30px 20px; 
     text-align: center;
+    max-width: 1280px; 
+    margin: 0 auto;
 }
 
 .giftListContainer h2 {

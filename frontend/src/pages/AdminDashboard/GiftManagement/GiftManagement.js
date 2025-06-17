@@ -1,3 +1,4 @@
+// frontend/src/pages/AdminDashboard/GiftManagement/GiftManagement.js
 import React, { useState, useEffect } from 'react';
 import api from '../../../api/api';
 import styles from './GiftManagement.module.css';
@@ -9,8 +10,7 @@ function GiftManagementPage() {
   const [formData, setFormData] = useState({
     nome: '',
     descricao: '',
-    valor_estimado: '',
-    // REMOVIDO: imagem_url e url_compra do formData
+    // REMOVIDO: valor_estimado do formData
     categoria_id: '',
     status: 'disponível'
   });
@@ -28,20 +28,12 @@ function GiftManagementPage() {
       const giftsResponse = await api.get('/gifts/admin');
       setGifts(giftsResponse.data);
 
-      const categoriesResponse = {
-        data: [
-          { id: 1, nome: 'Casa Nova' },
-          { id: 2, nome: 'Eletrodomésticos' },
-          { id: 3, nome: 'Lazer e Diversão' },
-          { id: 4, nome: 'Fundo para a Casa' },
-          { id: 5, nome: 'Decoração' },
-        ]
-      };
+      const categoriesResponse = await api.get('/categories');
       setCategories(categoriesResponse.data);
 
     } catch (err) {
       setError('Erro ao carregar dados: ' + (err.response?.data?.message || 'Erro desconhecido'));
-      console.error('Failed to fetch data:', err);
+      console.error('Failed to fetch data:', err.response?.data || err);
     } finally {
       setLoading(false);
     }
@@ -57,34 +49,34 @@ function GiftManagementPage() {
     setError(null);
     try {
       if (editingGiftId) {
-        // Envia apenas os campos necessários para o PUT
+        // ALTERADO: Envia apenas os campos necessários para o PUT
         await api.put(`/gifts/${editingGiftId}`, {
           categoria_id: formData.categoria_id,
           nome: formData.nome,
           descricao: formData.descricao,
-          valor_estimado: formData.valor_estimado,
+          // REMOVIDO: valor_estimado
           status: formData.status
         });
         alert('Presente atualizado com sucesso!');
       } else {
-        // Envia apenas os campos necessários para o POST
+        // ALTERADO: Envia apenas os campos necessários para o POST
         await api.post('/gifts', {
           categoria_id: formData.categoria_id,
           nome: formData.nome,
-          descricao: formData.descricao,
-          valor_estimado: formData.valor_estimado
+          descricao: formData.descricao
+          // REMOVIDO: valor_estimado
           // status será 'disponível' por padrão no backend
         });
         alert('Presente adicionado com sucesso!');
       }
       setFormData({ // Limpa o formulário
-        nome: '', descricao: '', valor_estimado: '', categoria_id: '', status: 'disponível'
+        nome: '', descricao: '', categoria_id: '', status: 'disponível' // REMOVIDO: valor_estimado
       });
       setEditingGiftId(null);
       fetchData(); // Recarrega os dados
     } catch (err) {
       setError('Erro ao salvar presente: ' + (err.response?.data?.message || 'Erro desconhecido'));
-      console.error('Failed to save gift:', err);
+      console.error('Failed to save gift:', err.response?.data || err);
     }
   };
 
@@ -93,7 +85,7 @@ function GiftManagementPage() {
     setFormData({
       nome: gift.nome,
       descricao: gift.descricao || '',
-      valor_estimado: gift.valor_estimado || '',
+      // REMOVIDO: valor_estimado
       categoria_id: gift.categoria_id || '',
       status: gift.status
     });
@@ -108,7 +100,7 @@ function GiftManagementPage() {
         fetchData();
       } catch (err) {
         setError('Erro ao excluir presente: ' + (err.response?.data?.message || 'Erro desconhecido'));
-        console.error('Failed to delete gift:', err);
+        console.error('Failed to delete gift:', err.response?.data || err);
       }
     }
   };
@@ -131,11 +123,7 @@ function GiftManagementPage() {
           <label htmlFor="descricao">Descrição:</label>
           <textarea id="descricao" name="descricao" value={formData.descricao} onChange={handleChange}></textarea>
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="valor_estimado">Valor Estimado:</label>
-          <input type="number" id="valor_estimado" name="valor_estimado" value={formData.valor_estimado} onChange={handleChange} step="0.01" />
-        </div>
-        {/* REMOVIDO: Campos de imagem_url e url_compra */}
+        {/* REMOVIDO: Campo de Valor Estimado */}
         <div className={styles.formGroup}>
           <label htmlFor="categoria_id">Categoria:</label>
           <select id="categoria_id" name="categoria_id" value={formData.categoria_id} onChange={handleChange}>
@@ -145,7 +133,6 @@ function GiftManagementPage() {
             ))}
           </select>
         </div>
-        {/* O status só é alterável em edição se o presente já existe, ou se quiser dar opção no novo */}
         {editingGiftId && (
           <div className={styles.formGroup}>
             <label htmlFor="status">Status:</label>
@@ -160,7 +147,7 @@ function GiftManagementPage() {
           {editingGiftId ? 'Atualizar Presente' : 'Adicionar Presente'}
         </button>
         {editingGiftId && (
-          <button type="button" onClick={() => { setEditingGiftId(null); setFormData({ nome: '', descricao: '', valor_estimado: '', categoria_id: '', status: 'disponível' }); }} className={`${styles.cancelEditButton} darken-text-medium`}>
+          <button type="button" onClick={() => { setEditingGiftId(null); setFormData({ nome: '', descricao: '', categoria_id: '', status: 'disponível' }); }} className={`${styles.cancelEditButton} darken-text-medium`}>
             Cancelar Edição
           </button>
         )}
@@ -175,7 +162,7 @@ function GiftManagementPage() {
             <th>ID</th>
             <th>Nome</th>
             <th>Categoria</th>
-            <th>Valor</th>
+            {/* REMOVIDO: Coluna Valor */}
             <th>Status</th>
             <th>Reservado Por</th>
             <th>Ações</th>
@@ -187,7 +174,7 @@ function GiftManagementPage() {
               <td>{gift.id}</td>
               <td>{gift.nome}</td>
               <td>{gift.categoria_nome || 'N/A'}</td>
-              <td>R$ {gift.valor_estimado ? gift.valor_estimado.toFixed(2).replace('.', ',') : '0,00'}</td>
+              {/* REMOVIDO: Valor Estimado na exibição */}
               <td>{gift.status}</td>
               <td>{gift.status !== 'disponível' ? (gift.nome_reservou || 'Desconhecido') : '-'}</td>
               <td>

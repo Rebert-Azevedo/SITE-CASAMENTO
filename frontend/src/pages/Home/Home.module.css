@@ -7,28 +7,31 @@
 .heroSection {
     position: relative;
     width: 100%;
-    height: 85vh; /* Altura generosa para o hero */
+    height: 85vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom right, var(--color-background-light), var(--color-secondary-gold), var(--color-primary-gold));
     overflow: hidden;
+    padding-top: 60px;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .overlayText {
     position: relative;
     z-index: 10;
-    background-color: var(--color-white);
-    padding: 50px 60px; /* Mais padding para mais "ar" */
+    background-color: rgba(255, 255, 255, 0.85); /* 85% de opacidade */
+    padding: 50px 60px;
     border-radius: 15px;
-    max-width: 800px; /* Limita a largura para melhor leitura */
-    box-shadow: 0 15px 40px rgba(0,0,0,0.08); /* Sombra mais suave e elegante */
+    max-width: 800px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
     text-shadow: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid var(--color-border-subtle); /* Borda sutil */
+    border: 1px solid var(--color-border-subtle);
 }
 
 .heroTitle {
@@ -43,7 +46,7 @@
 
 .names {
     font-family: 'Playfair Display', serif;
-    font-size: 3.0em; /* Tamanho ajustado para evitar corte */
+    font-size: 3.0em;
     font-weight: 700;
     color: var(--color-primary-green);
     margin-bottom: 25px;
@@ -108,7 +111,7 @@
 }
 
 .eventInfoCard {
-    background-color: var(--color-white);
+    background-color: rgba(255, 255, 255, 0.85); /* Mesma opacidade do overlayText */
     border-radius: 12px;
     padding: 40px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
@@ -165,7 +168,7 @@
         letter-spacing: 0.05em;
     }
     .names {
-        font-size: 2.5em; /* Ajusta o tamanho da fonte para telas médias */
+        font-size: 2.5em;
     }
     .date, .countdown {
         font-size: 1.4em;
@@ -201,7 +204,7 @@
         letter-spacing: 0.03em;
     }
     .names {
-        font-size: 1.8em; /* Ajusta o tamanho da fonte para telas pequenas */
+        font-size: 1.8em;
     }
     .names span {
         padding: 0 5px;

@@ -1,15 +1,28 @@
+/* frontend/src/pages/AdminDashboard/AdminDashboard.module.css */
+
 .dashboardContainer {
     display: flex;
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 80px); /* Ajuste se o header tiver altura diferente de 80px */
     background-color: var(--color-background-light);
+    margin-top: 0;
+    width: 100%;
 }
 
 .sidebar {
     width: 280px;
-    background-color: var(--color-primary-green); /* Sidebar em verde principal */
+    background-color: var(--color-primary-green);
     color: var(--color-white);
     padding: 30px 20px;
-    box-shadow: 2px 0 12px rgba(0,0,0,0.15); /* Sombra mais proeminente */
+    box-shadow: 2px 0 12px rgba(0,0,0,0.15);
+    /* NOVO: Propriedades para deixar a sidebar fixa */
+    position: fixed; /* Fixa a sidebar na viewport */
+    top: 0; /* Começa do topo da viewport */
+    left: 0; /* Alinha à esquerda */
+    height: 100vh; /* Ocupa 100% da altura da viewport */
+    overflow-y: auto; /* Permite rolagem interna se o conteúdo da sidebar for maior que a tela */
+    padding-top: calc(80px + 30px); /* Ajusta padding para ficar abaixo do header (80px header + 30px padding original) */
+    box-sizing: border-box; /* Garante que padding não adicione altura extra */
+    z-index: 10; /* Garante que esteja acima do conteúdo principal */
 }
 
 .sidebar h3 {
@@ -43,12 +56,12 @@
 }
 
 .sidebarLink:hover {
-    background-color: var(--color-secondary-green); /* Verde suave no hover */
-    box-shadow: inset 0 0 8px rgba(0,0,0,0.2); /* Sombra interna para "pressionado" */
+    background-color: var(--color-secondary-green);
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
 }
 
 .logoutButton {
-    background-color: var(--color-primary-gold); /* Botão de logout em dourado */
+    background-color: var(--color-primary-gold);
     color: var(--color-white);
     padding: 14px 20px;
     border-radius: 8px;
@@ -59,12 +72,19 @@
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     font-family: 'Open Sans', sans-serif;
 }
-
-/* Usar a classe `darken-primary-gold` do global.css para o hover */
+.logoutButton:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
 
 .content {
     flex-grow: 1;
-    padding: 40px; /* Mais padding */
+    padding: 30px 40px;
+    padding-top: 30px;
     background-color: var(--color-white);
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.03); /* Sombra interna leve */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.03);
+    /* NOVO: Ajusta a margem esquerda para o conteúdo principal não ficar por baixo da sidebar fixa */
+    margin-left: 280px; /* Deve ser igual à largura da sidebar */
+    position: relative; /* Para garantir que o z-index de elementos internos funcione */
+    min-height: calc(100vh - 80px); /* Garante que o conteúdo tenha altura mínima */
+    overflow-y: auto; /* Permite que o conteúdo principal role */
 }

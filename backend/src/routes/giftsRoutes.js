@@ -4,11 +4,11 @@ const giftsController = require('../controllers/giftsController');
 const protect = require('../middleware/authMiddleware');
 
 // Rotas Públicas
-router.get('/', giftsController.getAllGifts); // Lista os presentes disponíveis e reservados (público)
+router.get('/', giftsController.getAllGifts); // Lista os presentes disponíveis e reservados
 router.post('/:id/reserve', giftsController.reserveGift); // Convidados reservam um presente
 
 // Rotas Protegidas ADM
-router.get('/admin', protect, giftsController.getAllGiftsAdmin); // Lista todos os presentes com detalhes de reserva para admin
+router.get('/admin', protect, giftsController.getAllGiftsAdmin);
 router.post('/', protect, giftsController.createGift); // Adicionar um presente
 router.put('/:id', protect, giftsController.updateGift); // Atualizar um presente
 router.delete('/:id', protect, giftsController.deleteGift); // Excluir um presente

@@ -1,10 +1,8 @@
-// backend/src/controllers/guestsController.js
 const { pool } = require('../config/db');
 
 // ADMIN - Obter todos os convidados
 exports.getAllGuestsAdmin = async (req, res, next) => {
     try {
-        // CORRIGIDO: Removido 'codigo_acesso' e adicionado 'quantidade_criancas' no SELECT
         const [rows] = await pool.execute('SELECT id, nome_completo, telefone, quantidade_criancas, data_registro FROM convidados ORDER BY data_registro DESC');
         res.status(200).json(rows);
     } catch (error) {
@@ -15,13 +13,11 @@ exports.getAllGuestsAdmin = async (req, res, next) => {
 
 // ADMIN - Criar um novo convidado
 exports.createGuest = async (req, res, next) => {
-    // CORRIGIDO: Removido 'codigo_acesso' e adicionado 'quantidade_criancas'
     const { nome_completo, telefone, quantidade_criancas } = req.body;
     if (!nome_completo || !telefone) {
         return res.status(400).json({ message: 'Nome completo e telefone são obrigatórios para o convidado.' });
     }
     try {
-        // CORRIGIDO: Removido 'codigo_acesso' e adicionado 'quantidade_criancas' no INSERT
         const [result] = await pool.execute(
             'INSERT INTO convidados (nome_completo, telefone, quantidade_criancas) VALUES (?, ?, ?)',
             [nome_completo, telefone, quantidade_criancas || 0]
@@ -39,13 +35,11 @@ exports.createGuest = async (req, res, next) => {
 // ADMIN - Atualizar um convidado existente
 exports.updateGuest = async (req, res, next) => {
     const { id } = req.params;
-    // CORRIGIDO: Removido 'codigo_acesso' e adicionado 'quantidade_criancas'
     const { nome_completo, telefone, quantidade_criancas } = req.body;
     if (!nome_completo || !telefone) {
         return res.status(400).json({ message: 'Nome completo e telefone são obrigatórios para o convidado.' });
     }
     try {
-        // CORRIGIDO: Removido 'codigo_acesso' e adicionado 'quantidade_criancas' no UPDATE
         const [result] = await pool.execute(
             'UPDATE convidados SET nome_completo = ?, telefone = ?, quantidade_criancas = ? WHERE id = ?',
             [nome_completo, telefone, quantidade_criancas || 0, id]
@@ -64,7 +58,6 @@ exports.updateGuest = async (req, res, next) => {
 };
 
 // ADMIN - Deletar um convidado
-// (Permanece inalterado, pois não usa as colunas específicas)
 exports.deleteGuest = async (req, res, next) => {
     const { id } = req.params;
     try {

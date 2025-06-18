@@ -3,7 +3,6 @@ const { pool } = require('../config/db');
 // CONVIDADOS - Obter todos os presentes disponíveis/reservados (com ordenação)
 exports.getAllGifts = async (req, res, next) => {
     try {
-        // CORRIGIDO: `valor_estimado` removida da seleção
         const [rows] = await pool.execute(
             `SELECT id, categoria_id, nome, descricao, status
              FROM presentes
@@ -39,8 +38,6 @@ exports.reserveGift = async (req, res, next) => {
             return res.status(409).json({ message: 'Presente não está disponível para reserva.' });
         }
 
-        // Insere `telefone_reservou` no lugar de `email_reservou`
-        // Assumimos que a tabela `reservas` já foi ALTERADA no DB
         await connection.execute(
             'INSERT INTO reservas (presente_id, nome_reservou, telefone_reservou, mensagem) VALUES (?, ?, ?, ?)',
             [id, nome_reservou, telefone, mensagem]
@@ -63,16 +60,14 @@ exports.reserveGift = async (req, res, next) => {
 
 // ADMIN - Criar um novo presente
 exports.createGift = async (req, res, next) => {
-    // ALTERADO: `valor_estimado` removido da desestruturação
     const { categoria_id, nome, descricao } = req.body;
     if (!nome) {
         return res.status(400).json({ message: 'O nome do presente é obrigatório.' });
     }
     try {
-        // ALTERADO: `valor_estimado` removido da inserção
         const [result] = await pool.execute(
             'INSERT INTO presentes (categoria_id, nome, descricao, status) VALUES (?, ?, ?, ?)',
-            [categoria_id, nome, descricao, 'disponível'] // Status inicial padrão
+            [categoria_id, nome, descricao, 'disponível'] 
         );
         res.status(201).json({ message: 'Presente criado com sucesso!', giftId: result.insertId });
     } catch (error) {
@@ -84,10 +79,8 @@ exports.createGift = async (req, res, next) => {
 // ADMIN - Atualizar um presente existente
 exports.updateGift = async (req, res, next) => {
     const { id } = req.params;
-    // ALTERADO: `valor_estimado` removido da desestruturação
     const { categoria_id, nome, descricao, status } = req.body;
     try {
-        // ALTERADO: `valor_estimado` removido da atualização
         const [result] = await pool.execute(
             'UPDATE presentes SET categoria_id = ?, nome = ?, descricao = ?, status = ? WHERE id = ?',
             [categoria_id, nome, descricao, status, id]
@@ -118,7 +111,6 @@ exports.deleteGift = async (req, res, next) => {
 // ADMIN - Obter todos os presentes com detalhes de reserva
 exports.getAllGiftsAdmin = async (req, res, next) => {
     try {
-        // CORRIGIDO: `valor_estimado` e `url_compra` removidas da seleção
         const [rows] = await pool.execute(
             `SELECT p.id, p.nome, p.descricao, p.status,
                     c.nome AS categoria_nome, r.nome_reservou, r.telefone_reservou, r.data_reserva, r.mensagem AS reserva_mensagem

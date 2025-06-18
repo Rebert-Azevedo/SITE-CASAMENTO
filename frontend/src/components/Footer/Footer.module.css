@@ -1,16 +1,41 @@
 .footer {
-    background-color: var(--color-primary-green); /* Verde principal no rodapé */
+    background-color: var(--color-primary-green);
     color: var(--color-white);
     text-align: center;
-    padding: 30px; /* Mais padding */
-    margin-top: 60px; /* Mais espaço acima do rodapé */
-    font-size: 0.95em; /* Ligeiramente maior */
+    padding: 30px;
+    margin-top: 60px;
+    font-size: 0.95em;
     line-height: 1.6;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.05); /* Sombra sutil */
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05); 
 }
 
 .footer p {
     margin: 5px 0;
     color: var(--color-white);
     font-family: 'Open Sans', sans-serif;
+}
+
+/* --- AJUSTES DE RESPONSIVIDADE PARA O FOOTER --- */
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 20px; 
+        font-size: 0.9em; 
+        margin-top: 40px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 15px; 
+        font-size: 0.8em; 
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 320px) {
+    .footer {
+        padding: 10px;
+        font-size: 0.75em;
+    }
 }

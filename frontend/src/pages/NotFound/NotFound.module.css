@@ -6,6 +6,7 @@
     min-height: calc(100vh - 80px);
     text-align: center;
     background-color: var(--color-background-light);
+    padding: 20px;
 }
 
 .notFoundContainer h1 {
@@ -34,4 +35,65 @@
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.08em;
+}
+.homeLink:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* --------------------------------------------------- */
+/* --- AJUSTES DE RESPONSIVIDADE PARA A TELA 404 --- */
+/* --------------------------------------------------- */
+
+/* Breakpoint para telas médias (tablets e celulares maiores) */
+@media (max-width: 768px) {
+    .notFoundContainer {
+        min-height: calc(100vh - 60px); /* Ajusta altura mínima */
+        padding: 15px; /* Reduz padding */
+    }
+    .notFoundContainer h1 {
+        font-size: 8em; /* Reduz o tamanho do 404 */
+        margin-bottom: 15px;
+    }
+    .notFoundContainer p {
+        font-size: 1.6em; /* Reduz o tamanho da mensagem */
+        margin-bottom: 30px;
+    }
+    .homeLink {
+        padding: 15px 30px; /* Reduz o botão */
+        font-size: 1.1em;
+    }
+}
+
+/* Breakpoint para celulares pequenos */
+@media (max-width: 480px) {
+    .notFoundContainer {
+        padding: 10px;
+    }
+    .notFoundContainer h1 {
+        font-size: 6em; /* Mais redução */
+        margin-bottom: 10px;
+    }
+    .notFoundContainer p {
+        font-size: 1.3em;
+        margin-bottom: 20px;
+    }
+    .homeLink {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+}
+
+/* Breakpoint para celulares muito pequenos (ex: iPhone SE) */
+@media (max-width: 320px) {
+    .notFoundContainer h1 {
+        font-size: 5em;
+    }
+    .notFoundContainer p {
+        font-size: 1.1em;
+        margin-bottom: 15px;
+    }
+    .homeLink {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
 }

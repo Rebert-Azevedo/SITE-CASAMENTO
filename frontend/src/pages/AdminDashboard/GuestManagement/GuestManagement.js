@@ -10,7 +10,7 @@ function GuestManagementPage() {
   const [formData, setFormData] = useState({
     nome_completo: '',
     telefone: '',
-    quantidade_criancas: 0 // NOVO: Campo para quantidade de crianças
+    quantidade_criancas: 0
   });
   const [editingGuestId, setEditingGuestId] = useState(null);
 
@@ -36,7 +36,7 @@ function GuestManagementPage() {
     const { name, value, type } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'number' ? parseInt(value) || 0 : value // Converte para número se for campo number
+      [name]: type === 'number' ? parseInt(value) || 0 : value
     }));
   };
 
@@ -51,9 +51,9 @@ function GuestManagementPage() {
         await api.post('/guests', formData);
         alert('Convidado adicionado com sucesso!');
       }
-      setFormData({ nome_completo: '', telefone: '', quantidade_criancas: 0 }); // Limpa o formulário
+      setFormData({ nome_completo: '', telefone: '', quantidade_criancas: 0 });
       setEditingGuestId(null);
-      fetchGuests(); // Recarrega os dados
+      fetchGuests();
     } catch (err) {
       setError('Erro ao salvar convidado: ' + (err.response?.data?.message || 'Erro desconhecido'));
       console.error('Failed to save guest:', err.response?.data || err);
@@ -65,7 +65,7 @@ function GuestManagementPage() {
     setFormData({
       nome_completo: guest.nome_completo || '',
       telefone: guest.telefone || '',
-      quantidade_criancas: guest.quantidade_criancas || 0 // NOVO: Carrega quantidade de crianças
+      quantidade_criancas: guest.quantidade_criancas || 0
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -102,7 +102,7 @@ function GuestManagementPage() {
           <input type="tel" id="telefone" name="telefone" value={formData.telefone} onChange={handleChange} required />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="quantidade_criancas">Quantidade de Crianças:</label> {/* NOVO CAMPO */}
+          <label htmlFor="quantidade_criancas">Quantidade de Crianças:</label>
           <input type="number" id="quantidade_criancas" name="quantidade_criancas" value={formData.quantidade_criancas} onChange={handleChange} min="0" />
         </div>
         <button type="submit" className={`${styles.submitButton} darken-primary-gold`}>
@@ -118,33 +118,35 @@ function GuestManagementPage() {
       <hr className={styles.divider} />
 
       <h3>Lista de Convidados Cadastrados</h3>
-      <table className={styles.guestsTable}>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome Completo</th>
-            <th>Telefone</th>
-            <th>Crianças</th> {/* NOVO: Cabeçalho para Crianças */}
-            <th>Data Registro</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {guests.map(guest => (
-            <tr key={guest.id}>
-              <td>{guest.id}</td>
-              <td>{guest.nome_completo}</td>
-              <td>{guest.telefone}</td>
-              <td>{guest.quantidade_criancas}</td> {/* NOVO: Exibe quantidade de crianças */}
-              <td>{new Date(guest.data_registro).toLocaleDateString('pt-BR')}</td>
-              <td>
-                <button onClick={() => handleEdit(guest)} className={`${styles.actionButtonEdit} darken-secondary-gold`}>Editar</button>
-                <button onClick={() => handleDelete(guest.id)} className={styles.actionButtonDelete}>Excluir</button>
-              </td>
+      <div className={styles.tableResponsiveWrapper}> {/* NOVO: Wrapper para rolagem horizontal */}
+        <table className={styles.guestsTable}>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome Completo</th>
+              <th>Telefone</th>
+              <th>Crianças</th>
+              <th>Data Registro</th>
+              <th>Ações</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {guests.map(guest => (
+              <tr key={guest.id}>
+                <td>{guest.id}</td>
+                <td>{guest.nome_completo}</td>
+                <td>{guest.telefone}</td>
+                <td>{guest.quantidade_criancas}</td>
+                <td>{new Date(guest.data_registro).toLocaleDateString('pt-BR')}</td>
+                <td>
+                  <button onClick={() => handleEdit(guest)} className={`${styles.actionButtonEdit} darken-secondary-gold`}>Editar</button>
+                  <button onClick={() => handleDelete(guest.id)} className={styles.actionButtonDelete}>Excluir</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div> {/* Fim do Wrapper */}
     </div>
   );
 }

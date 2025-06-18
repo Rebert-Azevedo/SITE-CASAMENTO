@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom'; 
 
 // Componentes Reutilizáveis de Layout
 import Header from './components/Header/Header';
@@ -17,47 +17,50 @@ import GiftManagementPage from './pages/AdminDashboard/GiftManagement/GiftManage
 import GuestManagementPage from './pages/AdminDashboard/GuestManagement/GuestManagement';
 
 // Página de Erro 404
-import NotFoundPage from './pages/NotFound/NotFound'; // <--- Este import também estava fora de ordem
-
-// REMOVIDO: import axios from 'axios';
-// REMOVIDO: const api = axios.create(...) // A instância `api` é importada de 'src/api/api.js' onde é usada
+import NotFoundPage from './pages/NotFound/NotFound';
 
 function App() {
-  return (
-    <Router>
-      <Header /> {/* Cabeçalho de navegação */}
-      <main> {/* Conteúdo principal da página */}
-        <Routes>
-          {/* Rotas Públicas (acessíveis a todos os convidados) */}
-          <Route path="/" element={<HomePage />} /> {/* Página inicial */}
-          <Route path="/lista-presentes" element={<GiftListPage />} /> {/* Lista de presentes */}
+  const location = useLocation(); 
 
-          {/* Rota de Login para Administradores */}
+  useEffect(() => {
+    if (location.pathname.startsWith('/admin')) {
+      document.body.classList.add('is-admin-page');
+    } else {
+      document.body.classList.remove('is-admin-page');
+    }
+    return () => {
+      document.body.classList.remove('is-admin-page');
+    };
+  }, [location.pathname]);
+
+  return (
+    <>
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/lista-presentes" element={<GiftListPage />} />
+
           <Route path="/admin/login" element={<AdminLoginPage />} />
 
-          {/* Rotas Protegidas (apenas para administradores logados) */}
-          {/* A rota /admin/* serve como um layout para as sub-páginas administrativas */}
           <Route
             path="/admin/*"
             element={
-              <PrivateRoute> {/* Protege a rota, redireciona para login se não autenticado */}
-                <AdminDashboardPage /> {/* Componente de layout do dashboard admin */}
+              <PrivateRoute>
+                <AdminDashboardPage />
               </PrivateRoute>
             }
           >
-            {/* Sub-rotas aninhadas dentro do AdminDashboard (renderizadas pelo <Outlet /> no AdminDashboardPage) */}
-            <Route index element={<GiftManagementPage />} /> {/* Rota padrão para /admin/ (ex: /admin/) */}
-            <Route path="presentes" element={<GiftManagementPage />} /> {/* Rota para gerenciar presentes (/admin/presentes) */}
-            <Route path="convidados" element={<GuestManagementPage />} /> {/* Rota para gerenciar convidados (/admin/convidados) */}
-            {/* Adicione aqui as rotas para outras páginas de gerenciamento do admin */}
+            <Route index element={<GiftManagementPage />} />
+            <Route path="presentes" element={<GiftManagementPage />} />
+            <Route path="convidados" element={<GuestManagementPage />} />
           </Route>
 
-          {/* Rota 404: Captura qualquer URL que não corresponda a nenhuma rota acima */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
-      <Footer /> {/* Rodapé da página */}
-    </Router>
+      <Footer />
+    </>
   );
 }
 

@@ -1,7 +1,7 @@
 .giftListContainer {
-    padding: 30px 20px; 
+    padding: 30px 20px;
     text-align: center;
-    max-width: 1280px; 
+    max-width: 1280px;
     margin: 0 auto;
 }
 
@@ -49,20 +49,20 @@
 .categoryFilter select:hover,
 .categoryFilter select:focus {
     border-color: var(--color-primary-gold);
-    box-shadow: 0 0 0 4px rgba(var(--color-primary-gold), 0.15);
+    box-shadow: 0 0 0 4px rgba(var(--color-primary-gold-rgb), 0.15);
     outline: none;
 }
 
-.giftsList { /* ALTERADO: NOVO estilo de lista */
+.giftsList {
     display: flex;
-    flex-direction: column; /* Itens empilhados em coluna */
-    gap: 20px; /* Espaço entre os itens da lista */
-    max-width: 800px; /* Largura máxima da lista */
-    margin: 0 auto; /* Centraliza a lista */
-    padding: 20px; /* Adiciona padding interno */
-    background-color: var(--color-background-light); /* Fundo da área da lista */
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--color-background-light);
     border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05); /* Sombra suave para o contêiner da lista */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
 }
 
 
@@ -71,7 +71,6 @@
     color: var(--color-text-medium);
     padding: 50px;
     text-align: center;
-    /* Remover grid-column: 1 / -1; pois não é mais grid */
 }
 
 .loading, .error {
@@ -85,11 +84,84 @@
     color: var(--color-error);
 }
 
-/* As media queries para giftsGrid não são mais necessárias */
-/* Se quiser ajustar a largura máxima da lista em mobile: */
+/* --------------------------------------------------- */
+/* --- AJUSTES DE RESPONSIVIDADE PARA A LISTA DE PRESENTES --- */
+/* --------------------------------------------------- */
+
+/* Breakpoint para telas médias (tablets e celulares maiores) */
 @media (max-width: 768px) {
+    .giftListContainer {
+        padding: 20px 15px; /* Reduz padding lateral */
+    }
+    .giftListContainer h2 {
+        font-size: 2.2em; /* Reduz título */
+    }
+    .subtitle {
+        font-size: 1em; /* Reduz subtítulo */
+        margin-bottom: 30px;
+    }
+    .categoryFilter {
+        padding: 15px; /* Reduz padding do filtro */
+        margin-bottom: 30px;
+        width: 95%; /* Permite que o filtro ocupe mais largura */
+    }
+    .categoryFilter label {
+        font-size: 1em;
+        margin-right: 10px;
+    }
+    .categoryFilter select {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
     .giftsList {
-        max-width: 95%; /* Adapta a largura para telas menores */
-        padding: 15px;
+        max-width: 100%; /* Permite que a lista ocupe toda a largura disponível */
+        padding: 15px; /* Reduz padding interno da lista */
+        gap: 15px; /* Reduz espaçamento entre itens */
+    }
+    .noGiftsMessage {
+        padding: 30px;
+        font-size: 1em;
+    }
+}
+
+/* Breakpoint para celulares pequenos */
+@media (max-width: 480px) {
+    .giftListContainer {
+        padding: 15px 10px;
+    }
+    .giftListContainer h2 {
+        font-size: 1.8em;
+    }
+    .subtitle {
+        font-size: 0.9em;
+        margin-bottom: 20px;
+    }
+    .categoryFilter {
+        padding: 10px;
+        margin-bottom: 20px;
+        width: 100%;
+        display: block; /* Garante que ocupe a largura total */
+    }
+    .categoryFilter label, .categoryFilter select {
+        display: block; /* Organiza label e select em colunas */
+        width: 100%;
+        margin-bottom: 10px; /* Espaço entre label e select */
+    }
+    .categoryFilter select {
+        margin-top: 5px;
+    }
+    .giftsList {
+        padding: 10px;
+        gap: 10px;
+    }
+}
+
+/* Breakpoint para celulares muito pequenos (ex: iPhone SE) */
+@media (max-width: 320px) {
+    .giftListContainer h2 {
+        font-size: 1.6em;
+    }
+    .giftsList {
+        padding: 8px;
     }
 }

@@ -154,66 +154,147 @@
     color: var(--color-error);
 }
 
-/* Responsividade para Nomes Cortados e Layout Geral */
+/* --------------------------------------------------- */
+/* --- AJUSTES DE RESPONSIVIDADE PARA CELULARES --- */
+/* --------------------------------------------------- */
+
+/* Breakpoint para tablets e desktops pequenos (largura máxima de 768px) */
 @media (max-width: 768px) {
     .heroSection {
         height: 70vh;
+        padding-top: 40px; /* Reduz padding superior */
+        padding-left: 15px; /* Ajusta padding lateral */
+        padding-right: 15px;
     }
     .overlayText {
-        padding: 40px;
-        max-width: 90%;
+        padding: 30px; /* Reduz padding interno do overlay */
+        max-width: 95%; /* Permite que o overlay ocupe mais largura */
     }
     .heroTitle {
-        font-size: 2.8em;
-        letter-spacing: 0.05em;
+        font-size: 2.8em; /* Ajusta título */
+        letter-spacing: 0.03em; /* Reduz espaçamento de letras */
+        margin-bottom: 15px;
     }
     .names {
-        font-size: 2.5em;
+        font-size: 2.2em; /* Ajusta nomes para telas médias */
+        margin-bottom: 20px;
     }
-    .date, .countdown {
-        font-size: 1.4em;
+    .names span {
+        padding: 0 8px; /* Ajusta espaçamento entre nomes */
     }
-    .eventInfoSection {
-        padding: 50px 15px;
-        gap: 25px;
+    .date {
+        font-size: 1.5em; /* Ajusta data */
+        margin-bottom: 20px;
     }
-    .eventInfoCard {
-        padding: 30px;
-        min-width: 90%;
+    .countdown {
+        font-size: 1.8em; /* Ajusta contagem regressiva */
+        padding: 10px 20px;
+        letter-spacing: 0.08em;
     }
-    .eventInfoCard h3 {
-        font-size: 1.6em;
+    .countdownNumber {
+        font-size: 1.2em;
     }
     .verse {
         margin-top: 30px;
         padding-top: 20px;
         font-size: 1em;
+        max-width: 90%;
+    }
+    .eventInfoSection {
+        padding: 40px 15px; /* Ajusta padding da seção de informações */
+        gap: 20px;
+    }
+    .eventInfoCard {
+        padding: 25px;
+        min-width: 100%; /* Garante que os cards ocupem a largura total em telas pequenas */
+        max-width: 100%;
+        margin-bottom: 15px; /* Espaçamento entre cards */
+    }
+    .eventInfoCard h3 {
+        font-size: 1.4em;
+    }
+    .eventInfoCard p {
+        font-size: 0.95em;
     }
 }
 
+/* Breakpoint para celulares pequenos (largura máxima de 480px) */
 @media (max-width: 480px) {
     .heroSection {
-        height: 65vh;
+        height: 60vh;
+        padding-top: 30px; /* Mais redução */
+        padding-left: 10px;
+        padding-right: 10px;
     }
     .overlayText {
-        padding: 25px;
-        max-width: 95%;
+        padding: 20px; /* Mais redução */
+        max-width: 98%;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     }
     .heroTitle {
-        font-size: 2em;
-        letter-spacing: 0.03em;
+        font-size: 1.8em; /* Ajuste para caber em telas muito pequenas */
+        letter-spacing: 0.02em;
+        margin-bottom: 10px;
     }
     .names {
-        font-size: 1.8em;
+        font-size: 1.6em; /* Ajuste para caber */
+        margin-bottom: 15px;
     }
     .names span {
-        padding: 0 5px;
+        padding: 0 3px; /* Reduz ainda mais o padding */
     }
-    .date, .countdown {
-        font-size: 1.1em;
+    .date {
+        font-size: 1.2em;
+        margin-bottom: 15px;
     }
     .countdown {
-        padding: 10px 18px;
-        font-size: 1.8em;
+        font-size: 1.5em; /* Ajuste para caber */
+        padding: 8px 15px;
+        letter-spacing: 0.05em;
+    }
+    .countdownNumber {
+        font-size: 1.1em;
+    }
+    .verse {
+        margin-top: 25px;
+        padding-top: 15px;
+        font-size: 0.9em;
+    }
+    .eventInfoSection {
+        padding: 30px 10px;
+        gap: 15px;
+    }
+    .infoCard {
+        padding: 20px;
+    }
+    .infoCard h3 {
+        font-size: 1.2em;
+    }
+    .infoCard p {
+        font-size: 0.85em;
+    }
+}
+
+/* Breakpoint para celulares muito pequenos (iPhone 5/SE, etc.) */
+@media (max-width: 320px) {
+    .heroTitle {
+        font-size: 1.5em;
+    }
+    .names {
+        font-size: 1.3em;
+    }
+    .date, .countdown {
+        font-size: 1em;
+    }
+    .countdown {
+        padding: 6px 10px;
+        font-size: 1.2em;
+    }
+    .countdownNumber {
+        font-size: 0.9em;
+    }
+    .overlayText {
+        padding: 15px;
     }
 }

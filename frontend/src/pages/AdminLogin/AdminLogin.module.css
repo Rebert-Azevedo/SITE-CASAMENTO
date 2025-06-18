@@ -76,14 +76,14 @@
 }
 
 .submitButton {
-    background-color: var(--color-primary-green); /* Cor original do botão Entrar */
+    background-color: var(--color-primary-green);
     color: var(--color-white);
     padding: 15px 25px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 1.2em;
     font-weight: bold;
-    width: 70%; /* Largura reduzida */
+    width: 70%;
     max-width: 300px;
     margin-bottom: 15px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -92,22 +92,21 @@
 }
 
 .submitButton:hover {
-    /* CORRIGIDO: Escurece a cor original usando um filtro de brilho ou uma cor fixa */
-    background-color: var(--color-primary-green); /* Garante que a cor base seja mantida */
-    filter: brightness(0.9); /* Escurece 10% */
+    background-color: var(--color-primary-green);
+    filter: brightness(0.9);
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    color: var(--color-white); /* Garante que o texto permaneça branco */
+    color: var(--color-white);
 }
 
 .backButton {
-    background-color: var(--color-text-medium); /* Cor original do botão Voltar */
+    background-color: var(--color-text-medium);
     color: var(--color-white);
     padding: 15px 25px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 1.2em;
     font-weight: bold;
-    width: 70%; /* Largura reduzida */
+    width: 70%;
     max-width: 300px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     text-transform: uppercase;
@@ -115,13 +114,74 @@
 }
 
 .backButton:hover {
-    /* CORRIGIDO: Escurece a cor original usando um filtro de brilho ou uma cor fixa */
-    background-color: var(--color-text-medium); /* Garante que a cor base seja mantida */
-    filter: brightness(0.9); /* Escurece 10% */
+    background-color: var(--color-text-medium);
+    filter: brightness(0.9);
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    color: var(--color-white); /* Garante que o texto permaneça branco */
+    color: var(--color-white);
 }
 
-/* As classes toggleMode e toggleLink não são mais necessárias nesta página */
-/* .toggleMode { display: none; } */
-/* .toggleLink { display: none; } */
+/* --------------------------------------------------- */
+/* --- AJUSTES DE RESPONSIVIDADE PARA TELAS MENORES --- */
+/* --------------------------------------------------- */
+
+/* Breakpoint para telas médias (tablets e celulares maiores) */
+@media (max-width: 768px) {
+    .loginContainer {
+        min-height: calc(100vh - 60px); /* Ajusta altura para header menor, se aplicável */
+        padding: 15px;
+    }
+    .loginContainer h2 {
+        font-size: 2.2em; /* Reduz tamanho do título */
+        margin-bottom: 20px;
+    }
+    .loginContainer form {
+        padding: 30px; /* Reduz padding interno do formulário */
+        max-width: 400px; /* Reduz largura máxima */
+    }
+    .formGroup input[type="password"],
+    .formGroup input[type="email"] {
+        padding: 12px; /* Reduz padding dos inputs */
+        font-size: 1em;
+    }
+    .submitButton, .backButton {
+        width: 90%; /* Aumenta a largura dos botões para preencher mais */
+        padding: 12px 20px; /* Reduz padding dos botões */
+        font-size: 1.1em;
+        max-width: none; /* Remove max-width para que width: 90% funcione */
+    }
+}
+
+/* Breakpoint para celulares pequenos */
+@media (max-width: 480px) {
+    .loginContainer {
+        padding: 10px;
+    }
+    .loginContainer h2 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+    .loginContainer form {
+        padding: 25px;
+        border-radius: 8px;
+    }
+    .formGroup {
+        margin-bottom: 20px;
+    }
+    .formGroup label {
+        font-size: 0.9em;
+    }
+    .formGroup input[type="password"],
+    .formGroup input[type="email"] {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+    .submitButton, .backButton {
+        padding: 10px 15px;
+        font-size: 1em;
+        width: 100%; /* Ocupa largura total */
+    }
+    .errorMessage, .successMessage {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+}

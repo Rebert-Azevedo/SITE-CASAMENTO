@@ -1,16 +1,18 @@
+/* frontend/src/pages/AdminDashboard/GiftManagement/GiftManagement.module.css */
+
 .giftManagementContainer {
     padding: 20px;
 }
 
 .giftManagementContainer h2 {
-    font-size: 2.8em;
+    font-size: 2.5em;
     color: var(--color-primary-green);
     margin-bottom: 25px;
     text-align: center;
 }
 
 .giftManagementContainer h3 {
-    font-size: 2em;
+    font-size: 1.8em;
     color: var(--color-primary-green);
     margin-bottom: 20px;
     border-bottom: 1px solid var(--color-border-subtle);
@@ -40,7 +42,7 @@
 .formGroup input,
 .formGroup textarea,
 .formGroup select {
-    width: calc(100% - 20px);
+    width: 100%;
     padding: 12px;
     border: 1px solid var(--color-border-subtle);
     border-radius: 8px;
@@ -59,8 +61,12 @@
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     margin-right: 20px;
 }
+.submitButton:hover {
+    background-color: darken(var(--color-primary-gold), 10%);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
 
-.cancelEditButton {
+.cancelButton {
     background-color: var(--color-text-medium);
     color: var(--color-white);
     padding: 14px 28px;
@@ -70,11 +76,15 @@
     font-weight: bold;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
+.cancelButton:hover {
+    background-color: darken(var(--color-text-medium), 10%);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
 
 .errorMessage {
     color: var(--color-error);
-    background-color: rgba(var(--color-error), 0.1);
-    border: 1px solid rgba(var(--color-error), 0.2);
+    background-color: rgba(var(--color-error-rgb), 0.1);
+    border: 1px solid rgba(var(--color-error-rgb), 0.2);
     padding: 12px;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -89,60 +99,25 @@
     margin: 50px 0;
 }
 
-.giftsTable {
-    width: 100%;
-    border-collapse: collapse;
+/* NOVO: Estilos para o grid de presentes no Admin */
+.giftsGridAdmin {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* 3-4 colunas responsivas */
+    gap: 30px; /* Espaçamento entre os cards */
+    justify-content: center;
+    max-width: 100%; /* Ocupa a largura total do container */
     margin-top: 20px;
-    background-color: var(--color-white);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    border-radius: 12px;
-    overflow: hidden;
 }
 
-.giftsTable th,
-.giftsTable td {
-    border: 1px solid var(--color-border-subtle);
-    padding: 14px 18px;
-    text-align: left;
+.noGiftsMessage {
+    font-size: 1.2em;
+    color: var(--color-text-medium);
+    padding: 50px;
+    text-align: center;
+    grid-column: 1 / -1; /* Ocupa todas as colunas no grid */
 }
 
-.giftsTable th {
-    background-color: var(--color-secondary-green);
-    font-weight: bold;
-    color: var(--color-white);
-    font-family: 'Open Sans', sans-serif;
-    letter-spacing: 0.05em;
-}
-
-.giftsTable tbody tr:nth-child(even) {
-    background-color: var(--color-background-light);
-}
-
-.giftsTable tbody tr:hover {
-    background-color: lighten(var(--color-secondary-green), 20%);
-}
-
-.actionButtonEdit,
-.actionButtonDelete {
-    padding: 10px 15px;
-    border-radius: 6px;
-    cursor: pointer;
-    border: none;
-    font-weight: bold;
-    margin-right: 10px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    font-family: 'Open Sans', sans-serif;
-}
-
-.actionButtonEdit {
-    background-color: var(--color-secondary-gold);
-    color: var(--color-text-dark);
-}
-
-.actionButtonDelete {
-    background-color: var(--color-error);
-    color: var(--color-white);
-}
+/* REMOVIDOS: todos os estilos .giftsTable, th, td, tbody, tr, etc. */
 
 .loading, .error {
     text-align: center;
@@ -150,7 +125,93 @@
     font-size: 1.2em;
     color: var(--color-text-medium);
 }
-
 .error {
     color: var(--color-error);
+}
+
+@media (max-width: 992px) {
+    .giftManagementContainer {
+        padding: 15px;
+    }
+    .giftManagementContainer h2 {
+        font-size: 2.2em;
+    }
+    .giftManagementContainer h3 {
+        font-size: 1.6em;
+    }
+    .giftForm {
+        padding: 25px;
+        margin-bottom: 30px;
+    }
+    .formGroup input,
+    .formGroup textarea,
+    .formGroup select {
+        padding: 10px;
+    }
+    .submitButton, .cancelButton {
+        padding: 12px 20px;
+        font-size: 1em;
+        margin-right: 15px;
+    }
+    .giftsGridAdmin {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Reduz para 2-3 colunas */
+        gap: 20px;
+    }
+}
+
+/* Breakpoint para celulares (largura máxima de 768px) */
+@media (max-width: 768px) {
+    .giftManagementContainer {
+        padding: 10px;
+    }
+    .giftManagementContainer h2 {
+        font-size: 2em;
+    }
+    .giftManagementContainer h3 {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
+    .giftForm {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .formGroup {
+        margin-bottom: 15px;
+    }
+    .formGroup label {
+        font-size: 0.9em;
+        margin-bottom: 5px;
+    }
+    .formGroup input,
+    .formGroup textarea,
+    .formGroup select {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+    .submitButton, .cancelButton {
+        width: 100%; /* Botões ocupam largura total */
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .giftsGridAdmin {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 1-2 colunas */
+        gap: 15px;
+    }
+}
+
+/* Breakpoint para celulares pequenos (largura máxima de 480px) */
+@media (max-width: 480px) {
+    .giftManagementContainer h2 {
+        font-size: 1.8em;
+    }
+    .giftManagementContainer h3 {
+        font-size: 1.2em;
+    }
+    .giftForm {
+        padding: 15px;
+    }
+    .giftsGridAdmin {
+        grid-template-columns: 1fr; /* Força 1 coluna em celulares pequenos */
+        gap: 10px;
+    }
 }

@@ -1,4 +1,3 @@
-// frontend/src/components/Header/Header.js
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';

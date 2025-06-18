@@ -29,20 +29,19 @@
 }
 
 .formGroup {
-    margin-bottom: 20px; /* Ajustado */
+    margin-bottom: 20px;
 }
 
 .formGroup label {
     display: block;
-    margin-bottom: 10px; /* Ajustado */
+    margin-bottom: 10px;
     font-weight: bold;
     color: var(--color-text-dark);
 }
 
-/* Incluindo type="number" nos estilos de input */
 .formGroup input[type="text"],
 .formGroup input[type="tel"],
-.formGroup input[type="number"] { /* NOVO: Adicionado input[type="number"] */
+.formGroup input[type="number"] {
     width: 100%;
     padding: 12px;
     border: 1px solid var(--color-border-subtle);
@@ -52,7 +51,7 @@
 }
 
 .submitButton {
-    background-color: var(--color-primary-gold); /* Alterado para gold */
+    background-color: var(--color-primary-gold);
     color: var(--color-white);
     padding: 14px 28px;
     border-radius: 8px;
@@ -100,14 +99,23 @@
     margin: 50px 0;
 }
 
-.guestsTable {
+/* NOVO: Wrapper para a tabela responsiva */
+.tableResponsiveWrapper {
     width: 100%;
+    overflow-x: auto; /* Permite a rolagem horizontal */
+    -webkit-overflow-scrolling: touch; /* Melhora a rolagem em iOS */
+}
+
+.guestsTable {
+    width: 100%; /* Inicia com 100% */
+    min-width: 700px; /* NOVO: Largura mínima para a tabela não quebrar em telas menores */
     border-collapse: collapse;
     margin-top: 20px;
     background-color: var(--color-white);
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     border-radius: 12px;
-    overflow: hidden;
+    overflow: hidden; /* Garante que a borda arredondada se aplique */
+    white-space: nowrap; /* NOVO: Impede que o texto DENTRO das células quebre */
 }
 
 .guestsTable th,
@@ -115,6 +123,7 @@
     border: 1px solid var(--color-border-subtle);
     padding: 14px 18px;
     text-align: left;
+    white-space: nowrap; /* NOVO: Garante que o texto da célula não quebre, se for uma linha longa */
 }
 
 .guestsTable th {
@@ -169,4 +178,109 @@
 }
 .error {
     color: var(--color-error);
+}
+
+/* --------------------------------------------------- */
+/* --- AJUSTES DE RESPONSIVIDADE PARA O GERENCIAMENTO DE CONVIDADOS --- */
+/* --------------------------------------------------- */
+
+/* Breakpoint para telas médias (tablets e laptops menores) */
+@media (max-width: 992px) {
+    .guestManagementContainer {
+        padding: 15px;
+    }
+    .guestManagementContainer h2 {
+        font-size: 2.2em;
+    }
+    .guestManagementContainer h3 {
+        font-size: 1.6em;
+    }
+    .guestForm {
+        padding: 25px;
+        margin-bottom: 30px;
+    }
+    .formGroup input[type="text"],
+    .formGroup input[type="tel"],
+    .formGroup input[type="number"] {
+        padding: 10px;
+    }
+    .submitButton, .cancelButton {
+        padding: 12px 20px;
+        font-size: 1em;
+        margin-right: 15px;
+    }
+    .guestsTable {
+        /* min-width: 600px; */ /* Ajuste min-width se 700px for muito em 992px */
+    }
+    .guestsTable th, .guestsTable td {
+        padding: 10px 12px;
+        font-size: 0.95em;
+    }
+    .actionButtonEdit, .actionButtonDelete {
+        padding: 8px 12px;
+        font-size: 0.9em;
+        margin-right: 8px;
+    }
+}
+
+/* Breakpoint para celulares */
+@media (max-width: 768px) {
+    .guestManagementContainer {
+        padding: 10px;
+    }
+    .guestManagementContainer h2 {
+        font-size: 2em;
+    }
+    .guestManagementContainer h3 {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
+    .guestForm {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .formGroup {
+        margin-bottom: 15px;
+    }
+    .formGroup label {
+        font-size: 0.9em;
+        margin-bottom: 5px;
+    }
+    .formGroup input,
+    .formGroup textarea,
+    .formGroup select {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+    .submitButton, .cancelButton {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .actionButtonEdit, .actionButtonDelete {
+        font-size: 0.8em;
+        padding: 6px 10px;
+    }
+    /* Removido display: block/table-row aqui para evitar sobreposições que impedem overflow-x */
+}
+
+/* Breakpoint para celulares pequenos */
+@media (max-width: 480px) {
+    .guestManagementContainer h2 {
+        font-size: 1.8em;
+    }
+    .guestManagementContainer h3 {
+        font-size: 1.2em;
+    }
+    .guestForm {
+        padding: 15px;
+    }
+    .guestsTable th, .guestsTable td {
+        padding: 8px 10px;
+        font-size: 0.8em;
+    }
+    .actionButtonEdit, .actionButtonDelete {
+        font-size: 0.75em;
+        padding: 5px 8px;
+    }
 }

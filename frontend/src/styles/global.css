@@ -3,36 +3,26 @@
 /* Variáveis de Cores (Nova Paleta) */
 :root {
     --color-primary-green: #8B9B75;
-    /* Verde-oliva suave */
     --color-secondary-green: #A3B590;
-    /* Verde mais claro/suave */
     --color-primary-gold: #B8A16C;
-    /* Dourado terroso/ocre */
     --color-secondary-gold: #D2C49A;
-    /* Dourado mais claro/suave */
     --color-background-light: #FBFBF6;
-    /* Fundo off-white muito suave */
     --color-white: #FFFFFF;
     --color-text-dark: #4A4A4A;
-    /* Cinza escuro quente para texto principal */
     --color-text-medium: #757575;
-    /* Cinza médio para texto secundário */
     --color-border-subtle: #E0E0DB;
-    /* Borda sutil */
     --color-accent-dark: #6D7B5C;
-    /* Verde mais escuro para acentos */
+
     --color-error: #CC6666;
-    /* Vermelho mais suave para erros */
     --color-success: #66CC99;
-    /* Verde mais suave para sucesso */
-    --color-primary-gold-rgb: 184, 161, 108;
-    /* RGB de #B8A16C */
-    --color-primary-green-rgb: 139, 155, 117;
-    /* RGB de #8B9B75 */
-    --color-error-rgb: 204, 102, 102;
-    /* RGB de #CC6666 */
-    --color-success-rgb: 102, 204, 153;
-    /* RGB de #66CC99 */
+
+    /* NOVO: Adicionado valores RGB para uso com rgba() */
+    --color-primary-gold-rgb: 184, 161, 108; /* RGB de #B8A16C */
+    --color-primary-green-rgb: 139, 155, 117; /* RGB de #8B9B75 */
+    --color-error-rgb: 204, 102, 102; /* RGB de #CC6666 */
+    --color-success-rgb: 102, 204, 153; /* RGB de #66CC99 */
+    --color-background-light-rgb: 251, 251, 246; /* RGB de #FBFBF6 */
+    --color-white-rgb: 255, 255, 255; /* RGB de #FFFFFF */
 }
 
 /* Base Resets */
@@ -47,7 +37,6 @@
 body {
     font-family: 'Lora', serif;
     line-height: 1.7;
-    /* ALTERADO: Gradiente dourado como plano de fundo */
     background: linear-gradient(to bottom right, var(--color-background-light), var(--color-secondary-gold), var(--color-primary-gold));
     background-attachment: fixed;
     min-height: 100vh;
@@ -57,34 +46,22 @@ body {
 }
 
 /* Tipografia */
-h1, h2, h3, h4, h5, h6{
+html {
+    font-size: 16px; /* Base rem */
+}
+
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
-    /* Fonte elegante para títulos */
     color: var(--color-text-dark);
     margin-bottom: 0.8em;
     line-height: 1.2;
 }
 
-h1 {
-    font-size: 3.2em;
-}
-
-/* Títulos maiores */
-h2 {
-    font-size: 2.6em;
-}
-
-h3 {
-    font-size: 2.0em;
-}
-
-h4 {
-    font-size: 1.6em;
-}
-
-h5 {
-    font-size: 1.3em;
-}
+h1 { font-size: 3.2em; }
+h2 { font-size: 2.6em; }
+h3 { font-size: 2.0em; }
+h4 { font-size: 1.6em; }
+h5 { font-size: 1.3em; }
 
 p {
     margin-bottom: 1.2em;
@@ -104,10 +81,10 @@ a:hover {
 
 /* Layout Básico */
 main {
-    padding: 0; /* ALTERADO: Removido todo o padding do main */
+    padding: 0;
     min-height: calc(100vh - 200px);
-    max-width: 100%; /* ALTERADO: Garante que o main ocupe 100% da largura */
-    margin: 0; /* Garante que não haja margens */
+    max-width: 100%;
+    margin: 0;
 }
 
 /* Botões Genéricos */
@@ -145,6 +122,7 @@ button:hover {
 .formGroup input[type="password"],
 .formGroup input[type="number"],
 .formGroup input[type="url"],
+.formGroup input[type="tel"], /* Adicionado para capturar o telefone */
 .formGroup textarea,
 .formGroup select {
     width: 100%;
@@ -162,14 +140,15 @@ button:hover {
 .formGroup textarea:focus,
 .formGroup select:focus {
     border-color: var(--color-primary-green);
-    box-shadow: 0 0 0 4px rgba(var(--color-primary-green), 0.15);
+    box-shadow: 0 0 0 4px rgba(var(--color-primary-green-rgb), 0.15);
     outline: none;
 }
 
+/* ERRO E SUCESSO - CORRIGIDO PARA USAR VARIAVEIS RGB */
 .errorMessage {
     color: var(--color-error);
-    background-color: rgba(var(--color-error), 0.1);
-    border: 1px solid rgba(var(--color-error), 0.2);
+    background-color: rgba(var(--color-error-rgb), 0.1); /* Usando RGB para fundo */
+    border: 1px solid rgba(var(--color-error-rgb), 0.2); /* Usando RGB para borda */
     padding: 12px;
     border-radius: 6px;
     margin-top: 20px;
@@ -179,8 +158,8 @@ button:hover {
 
 .successMessage {
     color: var(--color-success);
-    background-color: rgba(var(--color-success), 0.1);
-    border: 1px solid rgba(var(--color-success), 0.2);
+    background-color: rgba(var(--color-success-rgb), 0.1); /* Usando RGB para fundo */
+    border: 1px solid rgba(var(--color-success-rgb), 0.2); /* Usando RGB para borda */
     padding: 12px;
     border-radius: 6px;
     margin-top: 20px;
@@ -188,14 +167,59 @@ button:hover {
     font-weight: 500;
 }
 
-.darken-primary-green:hover {
-    background-color: #6D7B5C;
+/* Classes para hover dos botões (já está em AdminLogin.module.css, mas se quiser globais) */
+/* Removido daqui e mantido no AdminLogin.module.css para especificidade */
+
+
+/* Responsividade Global (afeta base rem) */
+@media (max-width: 768px) {
+    html {
+        font-size: 15px; /* Reduz a base rem para telas médias */
+    }
 }
 
-.darken-primary-gold:hover {
-    background-color: #A6925B;
+@media (max-width: 480px) {
+    html {
+        font-size: 14px; /* Reduz mais a base rem para celulares */
+    }
 }
 
-.darken-text-medium:hover {
-    background-color: #606060;
+/* Estilos de modal-open (já no App.js ou GiftListItem) */
+/* Removido daqui, pois já estão em outros arquivos como GiftListItem ou AdminDashboard */
+body.modal-open, html.modal-open {
+    overflow: hidden !important;
+    height: 100% !important;
+    position: fixed !important;
+    width: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+.modalOverlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 99999 !important;
+}
+
+.modalContent {
+    z-index: 100000 !important;
+}
+
+/* Regra AGRESSIVA TEMPORÁRIA: Desabilita eventos de mouse no background quando modal aberto */
+/* Reintroduzido aqui para garantir que esteja em global.css se for necessário */
+body.modal-open > *:not(.modalOverlay),
+html.modal-open > body > *:not(.modalOverlay) {
+    pointer-events: none !important;
+}
+
+/* Garante que o overlay e o conteúdo do modal voltem a ter eventos */
+.modalOverlay {
+    pointer-events: auto !important;
+}
+
+.modalOverlay * { /* Garante que os elementos DENTRO do modal também tenham eventos */
+    pointer-events: auto !important;
 }

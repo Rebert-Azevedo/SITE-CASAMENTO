@@ -1,7 +1,7 @@
-// frontend/src/pages/AdminDashboard/GiftManagement/GiftManagement.js
 import React, { useState, useEffect } from 'react';
 import api from '../../../api/api';
 import styles from './GiftManagement.module.css';
+import GiftAdminGridItem from '../../../components/GiftAdminGridItem/GiftAdminGridItem'; 
 
 function GiftManagementPage() {
   const [gifts, setGifts] = useState([]);
@@ -10,7 +10,6 @@ function GiftManagementPage() {
   const [formData, setFormData] = useState({
     nome: '',
     descricao: '',
-    // REMOVIDO: valor_estimado do formData
     categoria_id: '',
     status: 'disponível'
   });
@@ -25,7 +24,7 @@ function GiftManagementPage() {
     setLoading(true);
     setError(null);
     try {
-      const giftsResponse = await api.get('/gifts/admin');
+      const giftsResponse = await api.get('/gifts/admin'); // Rota para admin gifts
       setGifts(giftsResponse.data);
 
       const categoriesResponse = await api.get('/categories');
@@ -49,31 +48,26 @@ function GiftManagementPage() {
     setError(null);
     try {
       if (editingGiftId) {
-        // ALTERADO: Envia apenas os campos necessários para o PUT
         await api.put(`/gifts/${editingGiftId}`, {
           categoria_id: formData.categoria_id,
           nome: formData.nome,
           descricao: formData.descricao,
-          // REMOVIDO: valor_estimado
           status: formData.status
         });
         alert('Presente atualizado com sucesso!');
       } else {
-        // ALTERADO: Envia apenas os campos necessários para o POST
         await api.post('/gifts', {
           categoria_id: formData.categoria_id,
           nome: formData.nome,
           descricao: formData.descricao
-          // REMOVIDO: valor_estimado
-          // status será 'disponível' por padrão no backend
         });
         alert('Presente adicionado com sucesso!');
       }
-      setFormData({ // Limpa o formulário
-        nome: '', descricao: '', categoria_id: '', status: 'disponível' // REMOVIDO: valor_estimado
+      setFormData({ 
+        nome: '', descricao: '', categoria_id: '', status: 'disponível'
       });
       setEditingGiftId(null);
-      fetchData(); // Recarrega os dados
+      fetchData();
     } catch (err) {
       setError('Erro ao salvar presente: ' + (err.response?.data?.message || 'Erro desconhecido'));
       console.error('Failed to save gift:', err.response?.data || err);
@@ -85,7 +79,6 @@ function GiftManagementPage() {
     setFormData({
       nome: gift.nome,
       descricao: gift.descricao || '',
-      // REMOVIDO: valor_estimado
       categoria_id: gift.categoria_id || '',
       status: gift.status
     });
@@ -123,7 +116,6 @@ function GiftManagementPage() {
           <label htmlFor="descricao">Descrição:</label>
           <textarea id="descricao" name="descricao" value={formData.descricao} onChange={handleChange}></textarea>
         </div>
-        {/* REMOVIDO: Campo de Valor Estimado */}
         <div className={styles.formGroup}>
           <label htmlFor="categoria_id">Categoria:</label>
           <select id="categoria_id" name="categoria_id" value={formData.categoria_id} onChange={handleChange}>
@@ -147,7 +139,7 @@ function GiftManagementPage() {
           {editingGiftId ? 'Atualizar Presente' : 'Adicionar Presente'}
         </button>
         {editingGiftId && (
-          <button type="button" onClick={() => { setEditingGiftId(null); setFormData({ nome: '', descricao: '', categoria_id: '', status: 'disponível' }); }} className={`${styles.cancelEditButton} darken-text-medium`}>
+          <button type="button" onClick={() => { setEditingGiftId(null); setFormData({ nome: '', descricao: '', categoria_id: '', status: 'disponível' }); }} className={`${styles.cancelButton} darken-text-medium`}>
             Cancelar Edição
           </button>
         )}
@@ -156,35 +148,20 @@ function GiftManagementPage() {
       <hr className={styles.divider} />
 
       <h3>Lista de Presentes Cadastrados</h3>
-      <table className={styles.giftsTable}>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Categoria</th>
-            {/* REMOVIDO: Coluna Valor */}
-            <th>Status</th>
-            <th>Reservado Por</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {gifts.map(gift => (
-            <tr key={gift.id}>
-              <td>{gift.id}</td>
-              <td>{gift.nome}</td>
-              <td>{gift.categoria_nome || 'N/A'}</td>
-              {/* REMOVIDO: Valor Estimado na exibição */}
-              <td>{gift.status}</td>
-              <td>{gift.status !== 'disponível' ? (gift.nome_reservou || 'Desconhecido') : '-'}</td>
-              <td>
-                <button onClick={() => handleEdit(gift)} className={`${styles.actionButtonEdit} darken-secondary-gold`}>Editar</button>
-                <button onClick={() => handleDelete(gift.id)} className={styles.actionButtonDelete}>Excluir</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className={styles.giftsGridAdmin}>
+        {gifts.length === 0 ? (
+          <p className={styles.noGiftsMessage}>Nenhum presente cadastrado.</p>
+        ) : (
+          gifts.map(gift => (
+            <GiftAdminGridItem
+              key={gift.id}
+              gift={gift}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+            />
+          ))
+        )}
+      </div>
     </div>
   );
 }

@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import styles from './GiftListItem.module.css';
-// REMOVIDO: import ConfirmationModal from '../ConfirmationModal/ConfirmationModal';
-import api from '../../api/api'; // O componente faz a chamada à API
+import api from '../../api/api';
 
 function GiftListItem({ gift, onReserve }) {
-  const [showReservationForm, setShowReservationForm] = useState(false); // NOVO: Estado para mostrar/esconder o formulário inline
+  const [showReservationForm, setShowReservationForm] = useState(false);
   const [formNome, setFormNome] = useState('');
   const [formTelefone, setFormTelefone] = useState('');
   const [formMensagem, setFormMensagem] = useState('');
-  const [formLoading, setFormLoading] = useState(false); // NOVO: Estado para loading do formulário inline
-  const [formError, setFormError] = useState(null); // NOVO: Erros do formulário inline
-  const [formSuccess, setFormSuccess] = useState(false); // NOVO: Sucesso do formulário inline
-
-  // NENHUM useEffect para `modal-open` ou `overflow: hidden` aqui, pois o modal foi removido.
+  const [formLoading, setFormLoading] = useState(false); 
+  const [formError, setFormError] = useState(null); 
+  const [formSuccess, setFormSuccess] = useState(false);
 
   const handleOpenForm = () => {
     setShowReservationForm(true);
-    setFormNome(''); // Reseta campos ao abrir
+    setFormNome(''); 
     setFormTelefone('');
     setFormMensagem('');
     setFormError(null);
@@ -29,7 +26,7 @@ function GiftListItem({ gift, onReserve }) {
     setFormSuccess(false);
   };
 
-  const handleSubmitReservation = async (e) => { // A lógica de submissão está aqui
+  const handleSubmitReservation = async (e) => { 
     e.preventDefault();
     setFormError(null);
     setFormSuccess(false);
@@ -43,23 +40,23 @@ function GiftListItem({ gift, onReserve }) {
     try {
       const response = await api.post(`/gifts/${gift.id}/reserve`, {
         nome_reservou: formNome,
-        telefone: formTelefone, // Enviando telefone para o backend
+        telefone: formTelefone,
         mensagem: formMensagem,
-        email_reservou: 'nao_usado@exemplo.com' // Mantido para compatibilidade com DB se necessário
+        email_reservou: 'nao_usado@exemplo.com' 
       });
 
       setFormSuccess(true);
-      setFormError(null); // Limpa erros se houver sucesso
-      onReserve(gift.id); // Notifica o pai para atualizar o estado da lista
+      setFormError(null); 
+      onReserve(gift.id); 
 
-      setTimeout(() => { // Fecha o formulário após 2 segundos de mensagem de sucesso
+      setTimeout(() => {
         setShowReservationForm(false);
       }, 2000);
 
     } catch (err) {
       console.error('Erro na reserva:', err.response?.data || err);
       setFormError(err.response?.data?.message || 'Erro ao reservar. Tente novamente.');
-      setFormSuccess(false); // Garante que o sucesso seja false em caso de erro
+      setFormSuccess(false);
     } finally {
       setFormLoading(false);
     }
@@ -89,7 +86,6 @@ function GiftListItem({ gift, onReserve }) {
         )}
       </div>
 
-      {/* NOVO: Formulário de Reserva Inline */}
       {showReservationForm && (
         <div className={styles.reservationFormContainer}>
           {formLoading && <div className={styles.loadingSpinnerInline}></div>}

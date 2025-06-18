@@ -14,7 +14,6 @@
     color: var(--color-white);
     padding: 30px 20px;
     box-shadow: 2px 0 12px rgba(0,0,0,0.15);
-    /* NOVO: Propriedades para deixar a sidebar fixa */
     position: fixed; /* Fixa a sidebar na viewport */
     top: 0; /* Começa do topo da viewport */
     left: 0; /* Alinha à esquerda */
@@ -82,9 +81,108 @@
     padding-top: 30px;
     background-color: var(--color-white);
     box-shadow: inset 0 0 10px rgba(0,0,0,0.03);
-    /* NOVO: Ajusta a margem esquerda para o conteúdo principal não ficar por baixo da sidebar fixa */
     margin-left: 280px; /* Deve ser igual à largura da sidebar */
-    position: relative; /* Para garantir que o z-index de elementos internos funcione */
-    min-height: calc(100vh - 80px); /* Garante que o conteúdo tenha altura mínima */
-    overflow-y: auto; /* Permite que o conteúdo principal role */
+    position: relative;
+    min-height: calc(100vh - 80px);
+    overflow-y: auto;
+}
+
+/* --------------------------------------------------- */
+/* --- AJUSTES DE RESPONSIVIDADE PARA O ADMIN DASHBOARD --- */
+/* --------------------------------------------------- */
+
+/* Breakpoint para telas médias (tablets e laptops menores) */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 220px; /* Reduz a largura da sidebar */
+        padding-top: calc(80px + 20px); /* Ajusta padding superior */
+    }
+    .sidebar h3 {
+        font-size: 1.6em;
+        margin-bottom: 30px;
+    }
+    .sidebarLink {
+        font-size: 1em;
+        padding: 10px 15px;
+    }
+    .logoutButton {
+        padding: 12px 18px;
+        font-size: 1em;
+        margin-top: 30px;
+    }
+    .content {
+        margin-left: 220px; /* Ajusta margem do conteúdo */
+        padding: 25px 30px; /* Reduz padding do conteúdo */
+    }
+}
+
+/* Breakpoint para celulares (sidebar vira um menu superior) */
+@media (max-width: 768px) {
+    .dashboardContainer {
+        flex-direction: column; /* Sidebar e conteúdo ficam em coluna */
+        min-height: calc(100vh - 60px); /* Ajusta altura para header menor */
+    }
+    .sidebar {
+        position: relative; /* Sidebar não é mais fixa */
+        width: 100%; /* Ocupa toda a largura */
+        height: auto; /* Altura automática */
+        padding: 15px 10px; /* Reduz padding */
+        padding-top: 15px; /* Não precisa mais do cálculo para Header */
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Sombra para separar do conteúdo */
+        display: flex; /* Para centralizar os itens do menu da sidebar */
+        flex-direction: row; /* Itens da sidebar em linha */
+        justify-content: center; /* Centraliza itens */
+        align-items: center;
+        flex-wrap: wrap; /* Permite que os itens quebrem a linha */
+    }
+    .sidebar h3 {
+        display: none; /* Esconde o título "Painel Admin" */
+    }
+    .sidebar nav {
+        width: 100%; /* Ocupa toda a largura para o nav */
+    }
+    .sidebar ul {
+        display: flex; /* Itens do menu em linha */
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px; /* Espaçamento entre os links */
+    }
+    .sidebar li {
+        margin-bottom: 0;
+        flex-grow: 1; /* Permite que os itens cresçam para preencher o espaço */
+        max-width: 180px; /* Limite de largura para cada botão/link */
+    }
+    .sidebarLink, .logoutButton {
+        font-size: 0.9em;
+        padding: 10px 15px;
+        width: 100%; /* Botões e links preenchem o espaço da li */
+        text-align: center;
+    }
+    .logoutButton {
+        margin-top: 10px; /* Espaço para o botão sair */
+        flex-grow: 1;
+    }
+    .content {
+        margin-left: 0; /* Remove a margem esquerda */
+        padding: 20px 15px; /* Ajusta padding do conteúdo */
+        min-height: calc(100vh - 120px); /* Ajuste com a altura do header + sidebar */
+        overflow-y: auto;
+    }
+}
+
+/* Breakpoint para celulares pequenos */
+@media (max-width: 480px) {
+    .sidebar {
+        padding: 10px;
+    }
+    .sidebar ul {
+        gap: 10px;
+    }
+    .sidebarLink, .logoutButton {
+        font-size: 0.85em;
+        padding: 8px 12px;
+    }
+    .content {
+        padding: 15px 10px;
+    }
 }

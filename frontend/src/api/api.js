@@ -1,4 +1,3 @@
-// frontend/src/api/api.js
 import axios from 'axios';
 
 const api = axios.create({
@@ -10,15 +9,10 @@ const api = axios.create({
 
 api.interceptors.request.use(
     (config) => {
-        // <<< AQUI ESTÁ O PONTO CRÍTICO >>>
-        // Pega a chave secreta armazenada no localStorage
         const adminSecretKey = localStorage.getItem('adminSecretKey');
 
         if (adminSecretKey) {
-            // Adiciona a chave secreta a um cabeçalho personalizado
-            // O backend authMiddleware.js espera 'x-admin-key' ou 'key' na query.
-            // Cabeçalhos são mais limpos para interceptors.
-            config.headers['X-Admin-Key'] = adminSecretKey; // <<< GARANTA QUE ESTÁ EXATAMENTE 'X-Admin-Key'
+            config.headers['X-Admin-Key'] = adminSecretKey; 
         }
         return config;
     },

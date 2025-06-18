@@ -1,5 +1,3 @@
-// frontend/src/pages/AdminDashboard/AdminDashboard.js
-import React from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import styles from './AdminDashboard.module.css';
@@ -16,11 +14,11 @@ function AdminDashboardPage() {
   return (
     <div className={styles.dashboardContainer}>
       <aside className={styles.sidebar}>
-        <h3>Painel Admin</h3>
+        <h3>Painel admin</h3>
         <nav>
           <ul>
-            <li><Link to="/admin/presentes" className={styles.sidebarLink}>Gerenciar Presentes</Link></li>
-            <li><Link to="/admin/convidados" className={styles.sidebarLink}>Gerenciar Convidados</Link></li>
+            <li><Link to="/admin/presentes" className={styles.sidebarLink}>Gerenciar presentes</Link></li>
+            <li><Link to="/admin/convidados" className={styles.sidebarLink}>Gerenciar convidados</Link></li>
           </ul>
         </nav>
       </aside>

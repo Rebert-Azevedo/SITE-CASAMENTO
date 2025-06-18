@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import api from '../api/api'; // Certifique-se de que Axios está importado
+import api from '../api/api'; 
 
 const AuthContext = createContext(null);
 
@@ -15,10 +15,10 @@ export const AuthProvider = ({ children }) => {
       const revalidateAuth = async () => {
         try {
           await api.get('/auth/validate-key');
-          setUser({ isAuthenticated: true }); // Apenas autentica se a validação passar
+          setUser({ isAuthenticated: true });
         } catch (error) {
           console.error('Revalidação da chave secreta falhou:', error);
-          logout(); // Força logout se a chave salva não for mais válida
+          logout();
         } finally {
           setLoading(false);
         }

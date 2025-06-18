@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom'; 
 
-// Componentes Reutilizáveis de Layout
+// Componentes
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
-// Páginas Públicas (para convidados)
+// Páginas Públicas
 import HomePage from './pages/Home/Home';
 import GiftListPage from './pages/GiftList/GiftList';
 
@@ -16,7 +16,7 @@ import AdminDashboardPage from './pages/AdminDashboard/AdminDashboard';
 import GiftManagementPage from './pages/AdminDashboard/GiftManagement/GiftManagement';
 import GuestManagementPage from './pages/AdminDashboard/GuestManagement/GuestManagement';
 
-// Página de Erro 404
+// Página de Erro
 import NotFoundPage from './pages/NotFound/NotFound';
 
 function App() {

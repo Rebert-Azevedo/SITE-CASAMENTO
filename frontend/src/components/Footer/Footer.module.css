@@ -15,8 +15,6 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-/* --- AJUSTES DE RESPONSIVIDADE PARA O FOOTER --- */
-
 @media (max-width: 768px) {
     .footer {
         padding: 20px; 

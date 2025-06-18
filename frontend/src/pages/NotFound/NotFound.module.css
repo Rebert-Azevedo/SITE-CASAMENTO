@@ -10,8 +10,8 @@
 }
 
 .notFoundContainer h1 {
-    font-size: 10em; /* Erro GIGANTE */
-    color: var(--color-primary-gold); /* Dourado para o erro */
+    font-size: 10em;
+    color: var(--color-primary-gold); 
     margin-bottom: 20px;
     font-family: 'Playfair Display', serif;
     letter-spacing: 0.05em;
@@ -25,9 +25,9 @@
 }
 
 .homeLink {
-    background-color: var(--color-primary-green); /* Botão em verde principal */
+    background-color: var(--color-primary-green);
     color: var(--color-white);
-    padding: 18px 35px; /* Botão maior */
+    padding: 18px 35px;
     border-radius: 8px;
     text-decoration: none;
     font-size: 1.3em;
@@ -40,37 +40,31 @@
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* --------------------------------------------------- */
-/* --- AJUSTES DE RESPONSIVIDADE PARA A TELA 404 --- */
-/* --------------------------------------------------- */
-
-/* Breakpoint para telas médias (tablets e celulares maiores) */
 @media (max-width: 768px) {
     .notFoundContainer {
-        min-height: calc(100vh - 60px); /* Ajusta altura mínima */
-        padding: 15px; /* Reduz padding */
+        min-height: calc(100vh - 60px); 
+        padding: 15px; 
     }
     .notFoundContainer h1 {
-        font-size: 8em; /* Reduz o tamanho do 404 */
+        font-size: 8em; 
         margin-bottom: 15px;
     }
     .notFoundContainer p {
-        font-size: 1.6em; /* Reduz o tamanho da mensagem */
+        font-size: 1.6em; 
         margin-bottom: 30px;
     }
     .homeLink {
-        padding: 15px 30px; /* Reduz o botão */
+        padding: 15px 30px; 
         font-size: 1.1em;
     }
 }
 
-/* Breakpoint para celulares pequenos */
 @media (max-width: 480px) {
     .notFoundContainer {
         padding: 10px;
     }
     .notFoundContainer h1 {
-        font-size: 6em; /* Mais redução */
+        font-size: 6em;
         margin-bottom: 10px;
     }
     .notFoundContainer p {
@@ -83,7 +77,6 @@
     }
 }
 
-/* Breakpoint para celulares muito pequenos (ex: iPhone SE) */
 @media (max-width: 320px) {
     .notFoundContainer h1 {
         font-size: 5em;

@@ -23,7 +23,7 @@ function Header() {
               <li><button onClick={logout} className={`${styles.logoutButton} darken-primary-gold`}>Sair</button></li>
             </>
           ) : (
-            <li><Link to="/admin/login" className={styles.navLink}>Acesso Admin</Link></li>
+            <li><Link to="/admin/login" className={styles.navLink}>Login</Link></li>
           )}
         </ul>
       </nav>

@@ -67,11 +67,6 @@ function GiftListItem({ gift, onReserve }) {
       <div className={styles.itemDetails}>
         <h3 className={styles.itemName}>{gift.nome}</h3>
         {gift.descricao && <p className={styles.itemDescription}>{gift.descricao}</p>}
-        {gift.valor_estimado !== null && gift.valor_estimado !== undefined && !isNaN(parseFloat(gift.valor_estimado)) && (
-          <p className={styles.itemValue}>
-            Valor Estimado: R$ {parseFloat(gift.valor_estimado).toFixed(2).replace('.', ',')}
-          </p>
-        )}
       </div>
 
       <div className={styles.itemActions}>
@@ -95,7 +90,7 @@ function GiftListItem({ gift, onReserve }) {
           {!formLoading && !formSuccess && (
             <form onSubmit={handleSubmitReservation} className={styles.reservationForm}>
               <div className={styles.formGroupInline}>
-                <label htmlFor={`nome-${gift.id}`}>Seu Nome:</label>
+                <label htmlFor={`nome-${gift.id}`}>Seu nome:</label>
                 <input
                   type="text"
                   id={`nome-${gift.id}`}
@@ -106,7 +101,7 @@ function GiftListItem({ gift, onReserve }) {
                 />
               </div>
               <div className={styles.formGroupInline}>
-                <label htmlFor={`telefone-${gift.id}`}>Seu Telefone:</label>
+                <label htmlFor={`telefone-${gift.id}`}>Seu telefone:</label>
                 <input
                   type="tel"
                   id={`telefone-${gift.id}`}

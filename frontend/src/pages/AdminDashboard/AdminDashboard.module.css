@@ -1,8 +1,6 @@
-/* frontend/src/pages/AdminDashboard/AdminDashboard.module.css */
-
 .dashboardContainer {
     display: flex;
-    min-height: calc(100vh - 80px); /* Ajuste se o header tiver altura diferente de 80px */
+    min-height: calc(100vh - 80px);
     background-color: var(--color-background-light);
     margin-top: 0;
     width: 100%;
@@ -14,14 +12,14 @@
     color: var(--color-white);
     padding: 30px 20px;
     box-shadow: 2px 0 12px rgba(0,0,0,0.15);
-    position: fixed; /* Fixa a sidebar na viewport */
-    top: 0; /* Começa do topo da viewport */
-    left: 0; /* Alinha à esquerda */
-    height: 100vh; /* Ocupa 100% da altura da viewport */
-    overflow-y: auto; /* Permite rolagem interna se o conteúdo da sidebar for maior que a tela */
-    padding-top: calc(80px + 30px); /* Ajusta padding para ficar abaixo do header (80px header + 30px padding original) */
-    box-sizing: border-box; /* Garante que padding não adicione altura extra */
-    z-index: 10; /* Garante que esteja acima do conteúdo principal */
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    height: 100vh; 
+    overflow-y: auto;
+    padding-top: calc(80px + 30px); 
+    box-sizing: border-box; 
+    z-index: 10; 
 }
 
 .sidebar h3 {
@@ -81,21 +79,16 @@
     padding-top: 30px;
     background-color: var(--color-white);
     box-shadow: inset 0 0 10px rgba(0,0,0,0.03);
-    margin-left: 280px; /* Deve ser igual à largura da sidebar */
+    margin-left: 280px; 
     position: relative;
     min-height: calc(100vh - 80px);
     overflow-y: auto;
 }
 
-/* --------------------------------------------------- */
-/* --- AJUSTES DE RESPONSIVIDADE PARA O ADMIN DASHBOARD --- */
-/* --------------------------------------------------- */
-
-/* Breakpoint para telas médias (tablets e laptops menores) */
 @media (max-width: 992px) {
     .sidebar {
-        width: 220px; /* Reduz a largura da sidebar */
-        padding-top: calc(80px + 20px); /* Ajusta padding superior */
+        width: 220px; 
+        padding-top: calc(80px + 20px); 
     }
     .sidebar h3 {
         font-size: 1.6em;
@@ -111,66 +104,64 @@
         margin-top: 30px;
     }
     .content {
-        margin-left: 220px; /* Ajusta margem do conteúdo */
-        padding: 25px 30px; /* Reduz padding do conteúdo */
+        margin-left: 220px; 
+        padding: 25px 30px; 
     }
 }
 
-/* Breakpoint para celulares (sidebar vira um menu superior) */
 @media (max-width: 768px) {
     .dashboardContainer {
-        flex-direction: column; /* Sidebar e conteúdo ficam em coluna */
-        min-height: calc(100vh - 60px); /* Ajusta altura para header menor */
+        flex-direction: column; 
+        min-height: calc(100vh - 60px);
     }
     .sidebar {
-        position: relative; /* Sidebar não é mais fixa */
-        width: 100%; /* Ocupa toda a largura */
-        height: auto; /* Altura automática */
-        padding: 15px 10px; /* Reduz padding */
-        padding-top: 15px; /* Não precisa mais do cálculo para Header */
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Sombra para separar do conteúdo */
-        display: flex; /* Para centralizar os itens do menu da sidebar */
-        flex-direction: row; /* Itens da sidebar em linha */
-        justify-content: center; /* Centraliza itens */
+        position: relative; 
+        width: 100%; 
+        height: auto; 
+        padding: 15px 10px; 
+        padding-top: 15px; 
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+        display: flex; 
+        flex-direction: row; 
+        justify-content: center; 
         align-items: center;
-        flex-wrap: wrap; /* Permite que os itens quebrem a linha */
+        flex-wrap: wrap;
     }
     .sidebar h3 {
-        display: none; /* Esconde o título "Painel Admin" */
+        display: none;
     }
     .sidebar nav {
-        width: 100%; /* Ocupa toda a largura para o nav */
+        width: 100%; 
     }
     .sidebar ul {
-        display: flex; /* Itens do menu em linha */
+        display: flex; 
         flex-wrap: wrap;
         justify-content: center;
-        gap: 15px; /* Espaçamento entre os links */
+        gap: 15px; 
     }
     .sidebar li {
         margin-bottom: 0;
-        flex-grow: 1; /* Permite que os itens cresçam para preencher o espaço */
-        max-width: 180px; /* Limite de largura para cada botão/link */
+        flex-grow: 1;
+        max-width: 180px;
     }
     .sidebarLink, .logoutButton {
         font-size: 0.9em;
         padding: 10px 15px;
-        width: 100%; /* Botões e links preenchem o espaço da li */
+        width: 100%; 
         text-align: center;
     }
     .logoutButton {
-        margin-top: 10px; /* Espaço para o botão sair */
+        margin-top: 10px;
         flex-grow: 1;
     }
     .content {
-        margin-left: 0; /* Remove a margem esquerda */
-        padding: 20px 15px; /* Ajusta padding do conteúdo */
-        min-height: calc(100vh - 120px); /* Ajuste com a altura do header + sidebar */
+        margin-left: 0; 
+        padding: 20px 15px; 
+        min-height: calc(100vh - 120px); 
         overflow-y: auto;
     }
 }
 
-/* Breakpoint para celulares pequenos */
 @media (max-width: 480px) {
     .sidebar {
         padding: 10px;

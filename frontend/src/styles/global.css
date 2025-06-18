@@ -1,6 +1,3 @@
-/* frontend/src/styles/global.css */
-
-/* Variáveis de Cores (Nova Paleta) */
 :root {
     --color-primary-green: #8B9B75;
     --color-secondary-green: #A3B590;
@@ -16,16 +13,14 @@
     --color-error: #CC6666;
     --color-success: #66CC99;
 
-    /* NOVO: Adicionado valores RGB para uso com rgba() */
-    --color-primary-gold-rgb: 184, 161, 108; /* RGB de #B8A16C */
-    --color-primary-green-rgb: 139, 155, 117; /* RGB de #8B9B75 */
-    --color-error-rgb: 204, 102, 102; /* RGB de #CC6666 */
-    --color-success-rgb: 102, 204, 153; /* RGB de #66CC99 */
-    --color-background-light-rgb: 251, 251, 246; /* RGB de #FBFBF6 */
-    --color-white-rgb: 255, 255, 255; /* RGB de #FFFFFF */
+    --color-primary-gold-rgb: 184, 161, 108;
+    --color-primary-green-rgb: 139, 155, 117;
+    --color-error-rgb: 204, 102, 102;
+    --color-success-rgb: 102, 204, 153; 
+    --color-background-light-rgb: 251, 251, 246;
+    --color-white-rgb: 255, 255, 255;
 }
 
-/* Base Resets */
 *,
 *::before,
 *::after {
@@ -45,9 +40,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Tipografia */
 html {
-    font-size: 16px; /* Base rem */
+    font-size: 16px; 
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -79,7 +73,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Layout Básico */
 main {
     padding: 0;
     min-height: calc(100vh - 200px);
@@ -87,7 +80,6 @@ main {
     margin: 0;
 }
 
-/* Botões Genéricos */
 button {
     padding: 14px 28px;
     border: none;
@@ -105,7 +97,6 @@ button:hover {
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Formulários */
 .formGroup {
     margin-bottom: 25px;
 }
@@ -122,7 +113,7 @@ button:hover {
 .formGroup input[type="password"],
 .formGroup input[type="number"],
 .formGroup input[type="url"],
-.formGroup input[type="tel"], /* Adicionado para capturar o telefone */
+.formGroup input[type="tel"], 
 .formGroup textarea,
 .formGroup select {
     width: 100%;
@@ -144,11 +135,10 @@ button:hover {
     outline: none;
 }
 
-/* ERRO E SUCESSO - CORRIGIDO PARA USAR VARIAVEIS RGB */
 .errorMessage {
     color: var(--color-error);
-    background-color: rgba(var(--color-error-rgb), 0.1); /* Usando RGB para fundo */
-    border: 1px solid rgba(var(--color-error-rgb), 0.2); /* Usando RGB para borda */
+    background-color: rgba(var(--color-error-rgb), 0.1); 
+    border: 1px solid rgba(var(--color-error-rgb), 0.2); 
     padding: 12px;
     border-radius: 6px;
     margin-top: 20px;
@@ -158,8 +148,8 @@ button:hover {
 
 .successMessage {
     color: var(--color-success);
-    background-color: rgba(var(--color-success-rgb), 0.1); /* Usando RGB para fundo */
-    border: 1px solid rgba(var(--color-success-rgb), 0.2); /* Usando RGB para borda */
+    background-color: rgba(var(--color-success-rgb), 0.1); 
+    border: 1px solid rgba(var(--color-success-rgb), 0.2); 
     padding: 12px;
     border-radius: 6px;
     margin-top: 20px;
@@ -167,25 +157,18 @@ button:hover {
     font-weight: 500;
 }
 
-/* Classes para hover dos botões (já está em AdminLogin.module.css, mas se quiser globais) */
-/* Removido daqui e mantido no AdminLogin.module.css para especificidade */
-
-
-/* Responsividade Global (afeta base rem) */
 @media (max-width: 768px) {
     html {
-        font-size: 15px; /* Reduz a base rem para telas médias */
+        font-size: 15px; 
     }
 }
 
 @media (max-width: 480px) {
     html {
-        font-size: 14px; /* Reduz mais a base rem para celulares */
+        font-size: 14px; 
     }
 }
 
-/* Estilos de modal-open (já no App.js ou GiftListItem) */
-/* Removido daqui, pois já estão em outros arquivos como GiftListItem ou AdminDashboard */
 body.modal-open, html.modal-open {
     overflow: hidden !important;
     height: 100% !important;
@@ -208,18 +191,15 @@ body.modal-open, html.modal-open {
     z-index: 100000 !important;
 }
 
-/* Regra AGRESSIVA TEMPORÁRIA: Desabilita eventos de mouse no background quando modal aberto */
-/* Reintroduzido aqui para garantir que esteja em global.css se for necessário */
 body.modal-open > *:not(.modalOverlay),
 html.modal-open > body > *:not(.modalOverlay) {
     pointer-events: none !important;
 }
 
-/* Garante que o overlay e o conteúdo do modal voltem a ter eventos */
 .modalOverlay {
     pointer-events: auto !important;
 }
 
-.modalOverlay * { /* Garante que os elementos DENTRO do modal também tenham eventos */
+.modalOverlay * { 
     pointer-events: auto !important;
 }

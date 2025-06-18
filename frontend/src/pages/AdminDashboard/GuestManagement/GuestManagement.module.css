@@ -1,5 +1,3 @@
-/* frontend/src/pages/AdminDashboard/GuestManagement/GuestManagement.module.css */
-
 .guestManagementContainer {
     padding: 20px;
 }
@@ -51,7 +49,7 @@
 }
 
 .submitButton {
-    background-color: var(--color-primary-gold);
+    background-color: var(--color-primary-gold); 
     color: var(--color-white);
     padding: 14px 28px;
     border-radius: 8px;
@@ -62,12 +60,14 @@
     margin-right: 20px;
 }
 .submitButton:hover {
-    background-color: darken(var(--color-primary-gold), 10%);
+    background-color: var(--color-primary-gold); 
+    filter: brightness(0.9); 
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    color: var(--color-white); 
 }
 
 .cancelButton {
-    background-color: var(--color-text-medium);
+    background-color: var(--color-text-medium); 
     color: var(--color-white);
     padding: 14px 28px;
     border-radius: 8px;
@@ -77,8 +77,10 @@
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 .cancelButton:hover {
-    background-color: darken(var(--color-text-medium), 10%);
+    background-color: var(--color-text-medium); 
+    filter: brightness(0.9); 
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    color: var(--color-white);
 }
 
 .errorMessage {
@@ -99,23 +101,16 @@
     margin: 50px 0;
 }
 
-/* NOVO: Wrapper para a tabela responsiva */
-.tableResponsiveWrapper {
-    width: 100%;
-    overflow-x: auto; /* Permite a rolagem horizontal */
-    -webkit-overflow-scrolling: touch; /* Melhora a rolagem em iOS */
-}
-
 .guestsTable {
-    width: 100%; /* Inicia com 100% */
-    min-width: 700px; /* NOVO: Largura mínima para a tabela não quebrar em telas menores */
+    width: 100%;
+    min-width: 700px; 
     border-collapse: collapse;
     margin-top: 20px;
     background-color: var(--color-white);
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     border-radius: 12px;
-    overflow: hidden; /* Garante que a borda arredondada se aplique */
-    white-space: nowrap; /* NOVO: Impede que o texto DENTRO das células quebre */
+    overflow: hidden;
+    white-space: nowrap; 
 }
 
 .guestsTable th,
@@ -123,7 +118,7 @@
     border: 1px solid var(--color-border-subtle);
     padding: 14px 18px;
     text-align: left;
-    white-space: nowrap; /* NOVO: Garante que o texto da célula não quebre, se for uma linha longa */
+    white-space: nowrap; 
 }
 
 .guestsTable th {
@@ -180,11 +175,6 @@
     color: var(--color-error);
 }
 
-/* --------------------------------------------------- */
-/* --- AJUSTES DE RESPONSIVIDADE PARA O GERENCIAMENTO DE CONVIDADOS --- */
-/* --------------------------------------------------- */
-
-/* Breakpoint para telas médias (tablets e laptops menores) */
 @media (max-width: 992px) {
     .guestManagementContainer {
         padding: 15px;
@@ -210,11 +200,11 @@
         margin-right: 15px;
     }
     .guestsTable {
-        /* min-width: 600px; */ /* Ajuste min-width se 700px for muito em 992px */
+        border-radius: 8px;
+        font-size: 0.95em;
     }
     .guestsTable th, .guestsTable td {
         padding: 10px 12px;
-        font-size: 0.95em;
     }
     .actionButtonEdit, .actionButtonDelete {
         padding: 8px 12px;
@@ -223,7 +213,6 @@
     }
 }
 
-/* Breakpoint para celulares */
 @media (max-width: 768px) {
     .guestManagementContainer {
         padding: 10px;
@@ -261,10 +250,8 @@
         font-size: 0.8em;
         padding: 6px 10px;
     }
-    /* Removido display: block/table-row aqui para evitar sobreposições que impedem overflow-x */
 }
 
-/* Breakpoint para celulares pequenos */
 @media (max-width: 480px) {
     .guestManagementContainer h2 {
         font-size: 1.8em;

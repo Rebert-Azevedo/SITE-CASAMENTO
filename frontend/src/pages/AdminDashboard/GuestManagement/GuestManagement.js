@@ -1,4 +1,3 @@
-// frontend/src/pages/AdminDashboard/GuestManagement/GuestManagement.js
 import React, { useState, useEffect } from 'react';
 import api from '../../../api/api';
 import styles from './GuestManagement.module.css';
@@ -88,13 +87,13 @@ function GuestManagementPage() {
 
   return (
     <div className={styles.guestManagementContainer}>
-      <h2>Gerenciar Convidados</h2>
+      <h2>Gerenciar convidados</h2>
 
       <form onSubmit={handleSubmit} className={styles.guestForm}>
-        <h3>{editingGuestId ? 'Editar Convidado' : 'Adicionar Novo Convidado'}</h3>
+        <h3>{editingGuestId ? 'Editar Convidado' : 'Adicionar novo convidado'}</h3>
         {error && <p className={styles.errorMessage}>{error}</p>}
         <div className={styles.formGroup}>
-          <label htmlFor="nome_completo">Nome Completo:</label>
+          <label htmlFor="nome_completo">Nome completo:</label>
           <input type="text" id="nome_completo" name="nome_completo" value={formData.nome_completo} onChange={handleChange} required />
         </div>
         <div className={styles.formGroup}>
@@ -102,7 +101,7 @@ function GuestManagementPage() {
           <input type="tel" id="telefone" name="telefone" value={formData.telefone} onChange={handleChange} required />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="quantidade_criancas">Quantidade de Crianças:</label>
+          <label htmlFor="quantidade_criancas">Quantidade de crianças:</label>
           <input type="number" id="quantidade_criancas" name="quantidade_criancas" value={formData.quantidade_criancas} onChange={handleChange} min="0" />
         </div>
         <button type="submit" className={`${styles.submitButton} darken-primary-gold`}>
@@ -117,16 +116,16 @@ function GuestManagementPage() {
 
       <hr className={styles.divider} />
 
-      <h3>Lista de Convidados Cadastrados</h3>
-      <div className={styles.tableResponsiveWrapper}> {/* NOVO: Wrapper para rolagem horizontal */}
+      <h3>Lista de convidados</h3>
+      <div className={styles.tableResponsiveWrapper}> 
         <table className={styles.guestsTable}>
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nome Completo</th>
+              <th>Nome completo</th>
               <th>Telefone</th>
               <th>Crianças</th>
-              <th>Data Registro</th>
+              <th>Data de registro</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -146,7 +145,7 @@ function GuestManagementPage() {
             ))}
           </tbody>
         </table>
-      </div> {/* Fim do Wrapper */}
+      </div>
     </div>
   );
 }

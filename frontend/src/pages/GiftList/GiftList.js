@@ -18,17 +18,15 @@ function GiftListPage() {
     setLoading(true);
     setError(null);
     try {
-      // Busca os presentes
       const giftsResponse = await api.get('/gifts');
       setGifts(giftsResponse.data);
 
-      // NOVO: Busca as categorias do backend dinamicamente
-      const categoriesResponse = await api.get('/categories'); // Faz a chamada para a nova API de categorias
-      setCategories(categoriesResponse.data); // Atualiza o estado das categorias com os dados do backend
+      const categoriesResponse = await api.get('/categories'); 
+      setCategories(categoriesResponse.data); 
 
     } catch (err) {
       setError('Erro ao carregar a lista de presentes ou categorias.');
-      console.error('Failed to fetch data:', err.response?.data || err); // Log mais detalhado
+      console.error('Failed to fetch data:', err.response?.data || err);
     } finally {
       setLoading(false);
     }
@@ -51,11 +49,11 @@ function GiftListPage() {
 
   return (
     <div className={styles.giftListContainer}>
-      <h2>Lista de Presentes do Nosso Chá</h2>
+      <h2>Lista de presentes</h2>
       <p className={styles.subtitle}>Escolha um presente para abençoar o nosso novo lar!</p>
 
       <div className={styles.categoryFilter}>
-        <label htmlFor="category">Filtrar por Categoria:</label>
+        <label htmlFor="category">Filtrar por categoria:</label>
         <select
           id="category"
           value={selectedCategory}

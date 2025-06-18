@@ -84,26 +84,21 @@
     color: var(--color-error);
 }
 
-/* --------------------------------------------------- */
-/* --- AJUSTES DE RESPONSIVIDADE PARA A LISTA DE PRESENTES --- */
-/* --------------------------------------------------- */
-
-/* Breakpoint para telas médias (tablets e celulares maiores) */
 @media (max-width: 768px) {
     .giftListContainer {
-        padding: 20px 15px; /* Reduz padding lateral */
+        padding: 20px 15px;
     }
     .giftListContainer h2 {
-        font-size: 2.2em; /* Reduz título */
+        font-size: 2.2em; 
     }
     .subtitle {
-        font-size: 1em; /* Reduz subtítulo */
+        font-size: 1em; 
         margin-bottom: 30px;
     }
     .categoryFilter {
-        padding: 15px; /* Reduz padding do filtro */
+        padding: 15px; 
         margin-bottom: 30px;
-        width: 95%; /* Permite que o filtro ocupe mais largura */
+        width: 95%; 
     }
     .categoryFilter label {
         font-size: 1em;
@@ -114,9 +109,9 @@
         font-size: 0.9em;
     }
     .giftsList {
-        max-width: 100%; /* Permite que a lista ocupe toda a largura disponível */
-        padding: 15px; /* Reduz padding interno da lista */
-        gap: 15px; /* Reduz espaçamento entre itens */
+        max-width: 100%;
+        padding: 15px; 
+        gap: 15px;
     }
     .noGiftsMessage {
         padding: 30px;
@@ -124,7 +119,6 @@
     }
 }
 
-/* Breakpoint para celulares pequenos */
 @media (max-width: 480px) {
     .giftListContainer {
         padding: 15px 10px;
@@ -140,12 +134,12 @@
         padding: 10px;
         margin-bottom: 20px;
         width: 100%;
-        display: block; /* Garante que ocupe a largura total */
+        display: block;
     }
     .categoryFilter label, .categoryFilter select {
-        display: block; /* Organiza label e select em colunas */
+        display: block;
         width: 100%;
-        margin-bottom: 10px; /* Espaço entre label e select */
+        margin-bottom: 10px; 
     }
     .categoryFilter select {
         margin-top: 5px;
@@ -156,7 +150,6 @@
     }
 }
 
-/* Breakpoint para celulares muito pequenos (ex: iPhone SE) */
 @media (max-width: 320px) {
     .giftListContainer h2 {
         font-size: 1.6em;
